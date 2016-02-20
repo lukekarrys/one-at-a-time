@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import Page from 'co/Page';
 import * as storyActions from 'a/stories';
 import Story from 'c/Story';
 
@@ -40,10 +41,10 @@ export default class StoryPage extends Component {
     const {story} = this.props;
 
     return (
-      <div>
+      <Page>
         <h1>Story</h1>
         <Story story={story} onSubmit={this.handleSubmit} />
-      </div>
+      </Page>
     );
   }
 }

@@ -48,6 +48,7 @@ config.postcss.push(cssnano({
 config.resolve.alias = {
   l: path.resolve(__dirname, 'src', 'lib'),
   c: path.resolve(__dirname, 'src', 'components'),
+  co: path.resolve(__dirname, 'src', 'containers'),
   a: path.resolve(__dirname, 'src', 'actions')
 };
 

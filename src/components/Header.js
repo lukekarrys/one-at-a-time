@@ -50,7 +50,7 @@ export default class Header extends Component {
       <Navbar fluid>
         <NavbarHeader>
           <NavbarBrand>
-            <Link to='/'>one_atatime</Link>
+            <Link to='/'>one ___ at a time</Link>
           </NavbarBrand>
           <NavbarToggle />
         </NavbarHeader>

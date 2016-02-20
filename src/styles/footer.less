@@ -1,0 +1,36 @@
+@footer-height: 40px;
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: @footer-height;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: @footer-height;
+  background: @gray-light;
+  padding-left: @grid-gutter-width / 2;
+  padding-right: @grid-gutter-width / 2;
+  text-align: right;
+
+  p {
+    margin: 10px 0 0 0;
+    color: @gray-dark;
+    a, a:hover {
+      color: @gray-dark;
+    }
+  }
+
+  .container, .container-fluid {
+    padding-top: 20px;
+    border-top: 1px solid @gray-light;
+    color: #777;
+  }
+}

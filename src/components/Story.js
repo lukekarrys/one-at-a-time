@@ -1,29 +1,14 @@
 import React, {Component} from 'react';
-import {Input, Button} from 'react-bootstrap';
 
-const ENTER = 13;
+import WordSelect from './WordSelect';
+import StoryItem from './StoryItem';
 
-export default class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {text: ''};
-  }
-
-  handleKeyPress = (e) => {
-    if (e.charCode === ENTER) {
-      this.handleSubmit();
-    }
-  }
-
-  handleSubmit = () => {
-    const value = this.refs.input.getValue();
-
+export default class Story extends Component {
+  handleSelect = (value) => {
     if (value) {
-      this.props.onSubmit({
-        type: 'text',
+      this.props.onSubmit({type: 'text',
         data: value
       });
-      this.setState({text: ''});
     }
   }
 
@@ -36,16 +21,10 @@ export default class Home extends Component {
 
     return (
       <div>
-        {story.data.map((item) => <span key={item.id}>{item.data}</span>)}
-        <Input
-          value={this.state.text}
-          ref='input'
-          type='text'
-          placeholder='Enter some text...'
-          onKeyPress={this.handleKeyPress}
-          onChange={(e) => this.setState({text: e.target.value})}
-          buttonAfter={<Button onClick={this.handleSubmit}>Submit</Button>}
-        />
+        <div className='story--items'>
+          {story.data.map((item) => <StoryItem key={item.id} {...item} />)}
+        </div>
+        <WordSelect onChange={this.handleSelect} />
       </div>
     );
   }
