@@ -1,39 +1,32 @@
 import React, {Component} from 'react';
-import {findDOMNode} from 'react-dom';
-import Select from 'react-select';
+import {Async as Select} from 'react-select';
+import {sampleSize} from 'lodash';
 
 import words from 'l/words';
 
 export default class WordSelect extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {words: words()};
-  }
+  loadOptions = (input, cb) => {
+    if (!input) {
+      cb(null, {options: sampleSize(words, 10)});
+      return;
+    }
 
-  componentWillReceiveProps() {
-    this.setState({words: words()});
+    cb(null, {
+      options: words.filter(({word}) => word.toLowerCase().indexOf(input.toLowerCase()) > -1),
+      complete: true
+    });
   }
-
-  handleOpen = () => setTimeout(() => {
-    // Hack to reset scroll position
-    findDOMNode(this._select)
-      .querySelector('.Select-menu')
-      .scrollTop = 0;
-  });
 
   render() {
     return (
       <Select
         ref={(c) => {this._select = c;}}
-        searchable
         simpleValue
-        allowCreate
-        clearable={false}
-        placeholder='Select a word'
-        options={this.state.words}
+        placeholder='Type and scroll to select a word...'
+        minimumInput={0}
         labelKey='word'
         valueKey='word'
-        onOpen={this.handleOpen}
+        loadOptions={this.loadOptions}
         {...this.props}
       />
     );

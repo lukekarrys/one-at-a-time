@@ -4,15 +4,19 @@
   "version": "1.0.0",
   "author": "Luke Karrys <luke@lukekarrys.com>",
   "dependencies": {
+    "3000-words-list": "0.0.3",
     "bootstrap": "^3.3.6",
     "bootswatch": "^3.3.6",
     "buzzwords": "^1.0.1",
+    "cat-names": "^1.0.2",
     "classnames": "^2.2.3",
+    "common-english-words": "0.0.6",
     "dale-chall": "^0.2.2",
     "fillers": "^1.0.0",
     "firebase": "^2.4.1",
     "hedges": "^1.0.0",
     "lodash": "^4.5.0",
+    "most-common-words": "0.0.1",
     "react": "^0.14.7",
     "react-bootstrap": "^0.28.3",
     "react-dom": "^0.14.7",
@@ -26,7 +30,9 @@
     "redux-thunk": "^1.0.3",
     "reselect": "^2.0.3",
     "spache": "^0.2.2",
-    "weasels": "^1.0.0"
+    "superb": "^1.3.0",
+    "weasels": "^1.0.0",
+    "yes-no-words": "^1.3.0"
   },
   "devDependencies": {
     "@lukekarrys/eslint-config": "^2.0.9",

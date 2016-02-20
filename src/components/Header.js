@@ -10,7 +10,21 @@ const {
   Collapse: NavbarCollapse
 } = Navbar;
 
+const BRANDS = [
+  '_____',
+  'word',
+  'gif',
+  'emoji',
+  'face',
+  'smile'
+];
+
 export default class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {brand: 0};
+  }
+
   handleLoginTwitter = (e) => {
     e.preventDefault();
     this.props.onLoginTwitter();
@@ -25,6 +39,24 @@ export default class Header extends Component {
     e.preventDefault();
     this.props.onLogout();
   };
+
+  handleMouseOver = () => {
+    if (this.brandInterval) {
+      clearInterval(this.brandInterval);
+    }
+    this.brandInterval = setInterval(() => {
+      const current = this.state.brand;
+      this.setState({brand: current === BRANDS.length - 1 ? 1 : current + 1});
+    }, 500);
+  }
+
+  handleMouseOut = () => {
+    if (this.brandInterval) {
+      clearInterval(this.brandInterval);
+      delete this.brandInterval;
+    }
+    this.setState({brand: 0});
+  }
 
   renderLoginDropdown() {
     const {me} = this.props;
@@ -50,7 +82,9 @@ export default class Header extends Component {
       <Navbar fluid>
         <NavbarHeader>
           <NavbarBrand>
-            <Link to='/'>one ___ at a time</Link>
+            <Link to='/' onMouseEnter={this.handleMouseOver} onMouseLeave={this.handleMouseOut}>
+              one {BRANDS[this.state.brand]} at a time
+            </Link>
           </NavbarBrand>
           <NavbarToggle />
         </NavbarHeader>

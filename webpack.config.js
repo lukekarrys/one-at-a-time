@@ -1,3 +1,5 @@
+/* eslint-env node */
+
 const makeWebpackConfig = require('hjs-webpack');
 const html = require('html-tagged-literals');
 const cssnano = require('cssnano');
@@ -9,7 +11,7 @@ const renderHTML = (context) => html[isDev ? 'unindent' : 'minify']`
   <!DOCTYPE html>
   <html>
   <head>
-    <title>One ____ At A Time</title>
+    <title>One _____ At A Time</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
