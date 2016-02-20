@@ -4,6 +4,8 @@ import sillyname from 'sillyname';
 
 import * as actions from '../constants/me';
 
+const {localStorage} = window;
+
 export const syncLogin = (auth) => {
   if (!auth) {
     return syncLogout();
@@ -18,8 +20,10 @@ export const syncLogin = (auth) => {
   };
 
   if (provider === 'anonymous') {
-    data.username = sillyname();
-    data.avatar = `https://avatars.discourse.org/v2/letter/${data.username.charAt(0)}/18BC9C/20.png`;
+    const localUsername = localStorage.getItem('anonymous_username');
+    data.username = localUsername || sillyname();
+    data.avatar = `https://avatars.discourse.org/v2/letter/${data.username.charAt(0)}/18BC9C/18.png`;
+    localStorage.setItem('anonymous_username', data.username);
   }
   else if (provider === 'twitter') {
     data.username = auth.twitter.username;
@@ -32,9 +36,10 @@ export const syncLogin = (auth) => {
   };
 };
 
-export const syncLogout = () => ({
-  type: actions.LOGOUT
-});
+export const syncLogout = () => {
+  localStorage.removeItem('anonymous_username');
+  return {type: actions.LOGOUT};
+};
 
 export const login = ({type = 'anonymous', redirect} = {}) => (dispatch) => {
   const action = type === 'anonymous'
