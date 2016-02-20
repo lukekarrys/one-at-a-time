@@ -26,6 +26,7 @@ export default class WordSelect extends Component {
         labelKey='word'
         valueKey='word'
         loadOptions={this.loadOptions}
+        className='select--word story--select'
         {...this.props}
       />
     );

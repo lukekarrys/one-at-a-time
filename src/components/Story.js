@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Row, Col} from 'react-bootstrap';
 
 import WordSelect from './WordSelect';
 import EmojiSelect from './EmojiSelect';
@@ -31,8 +32,14 @@ export default class Story extends Component {
         <div className='story--items'>
           {story.data.map((item) => <StoryItem key={item.id} {...item} />)}
         </div>
-        <WordSelect onChange={this.handleTextSelect} />
-        <EmojiSelect onChange={this.handleEmojiSelect} />
+        <Row>
+          <Col xs={12} sm={6}>
+            <WordSelect onChange={this.handleTextSelect} />
+          </Col>
+          <Col xs={12} sm={6}>
+            <EmojiSelect onChange={this.handleEmojiSelect} />
+          </Col>
+        </Row>
       </div>
     );
   }

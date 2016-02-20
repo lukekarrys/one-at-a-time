@@ -27,7 +27,7 @@ export default class EmojiSelect extends Component {
         valueKey='emoji'
         loadOptions={this.loadOptions}
         optionRenderer={(option) => <Emoji {...option} />}
-        className='select--emoji'
+        className='select--emoji story--select'
         {...this.props}
       />
     );
