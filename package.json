@@ -70,7 +70,7 @@
     "build": "NODE_ENV=production webpack",
     "lint": "eslint --ignore-path .gitignore .",
     "postinstall": "npm run rm.jshint",
-    "rm.jshint": "find . -type f -name '.jshint*' -maxdepth 1 | xargs rm",
+    "rm.jshint": "find . -maxdepth 1 -type f -name '.jshint*' | xargs rm",
     "start": "hjs-dev-server",
     "validate": "npm ls >/dev/null"
   }
