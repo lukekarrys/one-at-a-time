@@ -8,8 +8,8 @@ export const addItem = (item) => ({
   payload: item
 });
 
-export const create = (type = 'private') => (dispatch) => {
-  const ref = fb.child('stories').push({type});
+export const create = ({name, type = 'private'}) => (dispatch) => {
+  const ref = fb.child('stories').push({type, name});
   dispatch(replace(`/stories/${ref.key()}`));
 };
 
@@ -21,7 +21,9 @@ export const join = (id) => (dispatch, getState) => {
   }
 
   dispatch({type: actions.JOINING, payload: {id}});
-  const ref = fb.child(`storyData/${id}`);
+
+  const storyRef = fb.child(`stories/${id}`);
+  const dataRef = fb.child(`storyData/${id}`);
 
   const onChildAdded = (snapshot) => dispatch({
     type: actions.APPEND_DATA,
@@ -47,20 +49,29 @@ export const join = (id) => (dispatch, getState) => {
     });
 
     if (keys.length) {
-      query = ref
+      query = dataRef
         .orderByKey()
         .startAt(last(keys))
         .on('child_added', after(2, onChildAdded));
     }
     else {
-      query = ref.on('child_added', onChildAdded);
+      query = dataRef.on('child_added', onChildAdded);
     }
   };
 
-  ref.once('value', onValue);
+  dataRef.once('value', onValue);
+  storyRef.once('value', (snapshot) => {
+    dispatch({
+      type: actions.UPDATE_STORY,
+      payload: {
+        id,
+        ...snapshot.val()
+      }
+    });
+  });
 
   return () => {
-    ref.off('child_added', query);
+    dataRef.off('child_added', query);
   };
 };
 

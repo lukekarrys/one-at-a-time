@@ -4,10 +4,19 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  const {type, payload} = action;
-  const {id, data} = payload || {};
+  const {type, payload = {}} = action;
+  const {id} = payload;
 
   switch (type) {
+
+  case actions.UPDATE_STORY:
+    return {
+      ...state,
+      [id]: {
+        ...state[id],
+        ...payload
+      }
+    };
 
   case actions.JOINING:
     return {
@@ -25,7 +34,7 @@ export default (state = initialState, action) => {
       [id]: {
         ...state[id],
         joining: false,
-        data: data || []
+        data: payload.data || []
       }
     };
 
@@ -37,7 +46,7 @@ export default (state = initialState, action) => {
         joining: false,
         data: [
           ...(state[id].data || []),
-          data
+          payload.data
         ]
       }
     };

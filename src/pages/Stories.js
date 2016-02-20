@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {PageHeader} from 'react-bootstrap';
 
 import Page from 'co/Page';
 
@@ -6,7 +7,7 @@ export default class StoriesPage extends Component {
   render() {
     return (
       <Page>
-        <h1>List Open Stories</h1>
+        <PageHeader>List Open Stories</PageHeader>
       </Page>
     );
   }

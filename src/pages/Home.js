@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Nav, NavItem} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
+import {PageHeader} from 'react-bootstrap';
 
 import Page from 'co/Page';
 import * as storyActions from 'a/stories';
@@ -21,7 +22,7 @@ export default class Home extends Component {
   render() {
     return (
       <Page>
-        <h1>Start or Join a Story!</h1>
+        <PageHeader>Start or Join a Story!</PageHeader>
         <Nav bsStyle='pills' stacked>
           <LinkContainer to='/create/private'>
             <NavItem>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {PageHeader} from 'react-bootstrap';
 
 import Page from 'co/Page';
 import * as storyActions from 'a/stories';
@@ -9,7 +10,7 @@ import Story from 'c/Story';
 const mapStateToProps = (state, props) => {
   const {stories} = state;
   const {id} = props.params;
-  const story = stories[id];
+  const story = stories[id] || {name: 'Story'};
 
   return {
     id,
@@ -42,7 +43,7 @@ export default class StoryPage extends Component {
 
     return (
       <Page>
-        <h1>Story</h1>
+        <PageHeader>{story.name}</PageHeader>
         <Story story={story} onSubmit={this.handleSubmit} />
       </Page>
     );
