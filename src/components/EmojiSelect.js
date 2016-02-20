@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Async as Select} from 'react-select';
 import {sampleSize} from 'lodash';
 
-import Emoji, {names} from 'l/emoji';
+import Emoji, {names} from 'c/Emoji';
 
 export default class EmojiSelect extends Component {
   loadOptions = (input, cb) => {

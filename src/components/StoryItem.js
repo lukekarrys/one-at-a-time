@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Label} from 'react-bootstrap';
 
-import Emoji from 'l/Emoji';
+import Emoji from 'c/Emoji';
 
 export default class StoryItem extends Component {
   render() {
