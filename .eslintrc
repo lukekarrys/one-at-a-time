@@ -1,0 +1,7 @@
+{
+  "extends": ["@lukekarrys/eslint-config"],
+
+  "rules": {
+    "react/prop-types": 0
+  }
+}

@@ -1,0 +1,11 @@
+language: node
+sudo: false
+script: npm run lint && npm run validate && npm run build
+cache:
+  directories:
+  - node_modules
+deploy:
+  provider: firebase
+  skip_cleanup: true
+  token:
+    secure: faKNI1e199SLVJR363GodcmMddk9Tqde1lpMao98kfTkLSi8EolON27uQ6F6NaqUVDwYK1ZoUSBPXtk4M6flTUpyEA4IswJqkkWG/AajVOelCi5aNkRrY1Syc6wzrv1LYF86gcCO8z4WmrVGz4Hm/tXzuE3nJoz0Whm2ItRriL+WtJm5TslIGtwynk69it08+0GZa97JKDNYHVi4aH3HyOWC8JgIiv2LKlQ2O4ZLRwoALk/eDHL1YHd2ZepZGfUWeR05eNXRaTGtw6GBedt7F5TvPQxImVqJUG9JXd6lGeNNynFDGBRTBEmLARfrw2Rg/wUV7tjRlrrMF2G4HyON8wa8W8WLyhdGJMWu1pXmgmSjFCDhQH3n6AxRmf/hkCJUtQKCm7ZlrPZWdC1w0K+FJw5+zUVwG+HV+njfOu3OqWkmgnHGBhQ0SZ3hQ/OIVbKs7rP7V4PVuKLoMSZ71Uu+ol15ygXw2JtRXr0fhnVvxb9hXD1gv+fp5EBzx9SMguegLORVP/dHDXa5DK0mooWtyVmnInYez2QdZav7Oc91ye4euTRbXrWIgR+4ovFI54t9r8yKihV6x6UEAEhOuBCIBdb4AR373Y2V2e7rH3Or8q9KUatPvAWy1GnxTlL4xCBRUNMUM9T8BcyGWBqpVFjIjyvf9LnJoWFdeHcXpppbE9U=

@@ -1,0 +1,10 @@
+{
+  "firebase": "ss16-luke-dot-js",
+  "public": "public",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**",
+    "src/**"
+  ]
+}
