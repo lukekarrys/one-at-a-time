@@ -3,6 +3,8 @@ import {Link} from 'react-router';
 import {LinkContainer} from 'react-router-bootstrap';
 import {Navbar, Nav, MenuItem, NavDropdown} from 'react-bootstrap';
 
+import Logo from './Logo';
+
 const {
   Header: NavbarHeader,
   Brand: NavbarBrand,
@@ -10,21 +12,7 @@ const {
   Collapse: NavbarCollapse
 } = Navbar;
 
-const BRANDS = [
-  '_____',
-  'word',
-  'gif',
-  'emoji',
-  'face',
-  'smile'
-];
-
 export default class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {brand: 0};
-  }
-
   handleLoginTwitter = (e) => {
     e.preventDefault();
     this.props.onLogin({type: 'twitter'});
@@ -39,24 +27,6 @@ export default class Header extends Component {
     e.preventDefault();
     this.props.onLogout();
   };
-
-  handleMouseOver = () => {
-    if (this.brandInterval) {
-      clearInterval(this.brandInterval);
-    }
-    this.brandInterval = setInterval(() => {
-      const current = this.state.brand;
-      this.setState({brand: current === BRANDS.length - 1 ? 1 : current + 1});
-    }, 500);
-  }
-
-  handleMouseOut = () => {
-    if (this.brandInterval) {
-      clearInterval(this.brandInterval);
-      delete this.brandInterval;
-    }
-    this.setState({brand: 0});
-  }
 
   renderLoginDropdown() {
     const {me} = this.props;
@@ -89,7 +59,7 @@ export default class Header extends Component {
         <NavbarHeader>
           <NavbarBrand>
             <Link to='/' onMouseEnter={this.handleMouseOver} onMouseLeave={this.handleMouseOut}>
-              one {BRANDS[this.state.brand]} at a time
+              <Logo onHover cycle />
             </Link>
           </NavbarBrand>
           <NavbarToggle />

@@ -3,8 +3,9 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Nav, NavItem} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
-import {PageHeader} from 'react-bootstrap';
+import {Jumbotron, Label} from 'react-bootstrap';
 
+import Logo from 'c/Logo';
 import Page from 'co/Page';
 import * as storyActions from 'a/stories';
 
@@ -22,7 +23,18 @@ export default class Home extends Component {
   render() {
     return (
       <Page>
-        <PageHeader>Start or Join a Story!</PageHeader>
+        <Jumbotron>
+          <h1 className='text-center'>
+            <Logo interval={3000} />
+          </h1>
+          <p>
+            As the saying goes, an <Label bsStyle='success'>emoji</Label> is worth a million words and a <Label bsStyle='success'>gif</Label> of your wonderful face is worth 10 million.
+          </p>
+          <p>
+            Collaborate with friends to create stories from <Label bsStyle='success'>emoji</Label>, webcam <Label bsStyle='success'>gifs</Label>, and even regular old <Label bsStyle='success'>words*</Label>.
+          </p>
+          <small>*words are still just worth one word, but no one is really keeping score</small>
+        </Jumbotron>
         <Nav bsStyle='pills' stacked>
           <LinkContainer to='/create/private'>
             <NavItem>
