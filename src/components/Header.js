@@ -27,12 +27,12 @@ export default class Header extends Component {
 
   handleLoginTwitter = (e) => {
     e.preventDefault();
-    this.props.onLoginTwitter();
+    this.props.onLogin({type: 'twitter'});
   };
 
   handleLogoutAnonymous = (e) => {
     e.preventDefault();
-    this.props.onLoginAnonymous();
+    this.props.onLogin();
   };
 
   handleLogout = (e) => {
@@ -61,9 +61,15 @@ export default class Header extends Component {
   renderLoginDropdown() {
     const {me} = this.props;
 
-    if (me.id) {
+    if (me.token) {
+      const user = (
+        <span>
+          {me.username}
+          {me.avatar && <img src={me.avatar} />}
+        </span>
+      );
       return (
-        <NavDropdown title={me.username} id='me-nav'>
+        <NavDropdown title={user} id='me-nav'>
           <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
         </NavDropdown>
       );

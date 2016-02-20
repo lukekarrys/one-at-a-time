@@ -1,6 +1,7 @@
-import {pick} from 'lodash';
-
 import firebase from 'l/firebase';
+import {replace} from 'react-router-redux';
+import sillyname from 'sillyname';
+
 import * as actions from '../constants/me';
 
 export const syncLogin = (auth) => {
@@ -9,21 +10,25 @@ export const syncLogin = (auth) => {
   }
 
   const {provider} = auth;
-  let data;
+
+  const data = {
+    token: auth.token,
+    uid: auth.uid,
+    provider: auth.provider
+  };
 
   if (provider === 'anonymous') {
-    data = {
-      username: 'anonymous',
-      id: auth.uid
-    };
+    data.username = sillyname();
+    data.avatar = `https://avatars.discourse.org/v2/letter/${data.username.charAt(0)}/18BC9C/20.png`;
   }
   else if (provider === 'twitter') {
-    data = pick(auth.twitter, 'username', 'id');
+    data.username = auth.twitter.username;
+    data.avatar = auth.twitter.profileImageURL;
   }
 
   return {
     type: actions.LOGIN,
-    auth: data
+    payload: data
   };
 };
 
@@ -31,23 +36,20 @@ export const syncLogout = () => ({
   type: actions.LOGOUT
 });
 
-export const loginTwitter = () => (dispatch) => {
-  firebase.authWithOAuthPopup('twitter', (err, auth) => {
-    if (err) {
-      dispatch(syncLogout());
-      return;
-    }
-    dispatch(syncLogin(auth));
-  });
-};
+export const login = ({type = 'anonymous', redirect} = {}) => (dispatch) => {
+  const action = type === 'anonymous'
+    ? (cb) => firebase.authAnonymously(cb)
+    : (cb) => firebase.authWithOAuthPopup(type, cb);
 
-export const loginAnonymous = () => (dispatch) => {
-  firebase.authAnonymously((err, auth) => {
+  action((err, auth) => {
     if (err) {
       dispatch(syncLogout());
       return;
     }
-    dispatch(syncLogin(auth));
+    // dispatch(syncLogin(auth));
+    if (redirect) {
+      dispatch(replace(redirect));
+    }
   });
 };
 

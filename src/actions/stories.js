@@ -1,5 +1,7 @@
 import {replace} from 'react-router-redux';
 import {after, last} from 'lodash';
+
+import {LOGOUT} from '../constants/me';
 import * as actions from '../constants/stories';
 import fb from 'l/firebase';
 
@@ -16,8 +18,8 @@ export const create = ({name, type = 'private'}) => (dispatch) => {
 export const join = (id) => (dispatch, getState) => {
   const {me} = getState();
 
-  if (!me.id) {
-    return dispatch({type: 'AUTH'});
+  if (!me.token) {
+    return dispatch({type: LOGOUT});
   }
 
   dispatch({type: actions.JOINING, payload: {id}});
@@ -78,9 +80,13 @@ export const join = (id) => (dispatch, getState) => {
 export const add = ({id, item}) => (dispatch, getState) => {
   const {me} = getState();
 
-  if (!me.id) {
-    return dispatch({type: 'AUTH'});
+  if (me.token) {
+    fb.child(`storyData/${id}`).push({
+      ...item,
+      user: {
+        uid: me.uid,
+        username: me.username
+      }
+    });
   }
-
-  return fb.child(`storyData/${id}`).push(item);
 };

@@ -1,19 +1,22 @@
 import React from 'react';
 import {Route, IndexRoute} from 'react-router';
 
-import App from './containers/App';
-import Home from './pages/Home';
-import Create from './pages/Create';
-import Join from './pages/Join';
-import Story from './pages/Story';
-import Stories from './pages/Stories';
+import Auth from 'co/Auth';
+import App from 'co/App';
+
+import Home from 'p/Home';
+import Create from 'p/Create';
+import Story from 'p/Story';
+import Stories from 'p/Stories';
+import Login from 'p/Login';
+import FourOhFour from 'p/FourOhFour';
 
 export default (
   <Route path='/' component={App}>
     <IndexRoute component={Home} />
-    <Route path='create' component={Create} />
+    <Route path='login' component={Login} />
 
-    <Route path='create'>
+    <Route path='create' component={Auth()}>
       <IndexRoute component={Create} />
       <Route path='public' component={Create} />
       <Route path='private' component={Create} />
@@ -21,8 +24,11 @@ export default (
 
     <Route path='stories'>
       <IndexRoute component={Stories} />
-      <Route path='join' component={Join} />
-      <Route path=':id' component={Story} />
+      <Route component={Auth()}>
+        <Route path=':id' component={Story} />
+      </Route>
     </Route>
+
+    <Route path='*' component={FourOhFour} />
   </Route>
 );

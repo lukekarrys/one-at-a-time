@@ -38,7 +38,7 @@ export default class Home extends Component {
               <small>(anyone can join and the url will be listed on the stories page)</small>
             </NavItem>
           </LinkContainer>
-          <LinkContainer to='/stories/join'>
+          <LinkContainer to='/stories'>
             <NavItem><strong>Join a Public Story</strong></NavItem>
           </LinkContainer>
         </Nav>

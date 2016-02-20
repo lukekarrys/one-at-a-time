@@ -21,8 +21,7 @@ export default class App extends Component {
       <div>
         <Header
           me={me}
-          onLoginAnonymous={meActions.loginAnonymous}
-          onLoginTwitter={meActions.loginTwitter}
+          onLogin={meActions.login}
           onLogout={meActions.logout}
         />
         {this.props.children}

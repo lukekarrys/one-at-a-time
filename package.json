@@ -30,6 +30,7 @@
     "redux-logger": "^2.5.2",
     "redux-thunk": "^1.0.3",
     "reselect": "^2.0.3",
+    "sillyname": "^0.1.0",
     "spache": "^0.2.2",
     "superb": "^1.3.0",
     "weasels": "^1.0.0",
@@ -80,8 +81,9 @@
   ],
   "private": true,
   "scripts": {
-    "deploy": "firebase deploy",
     "build": "NODE_ENV=production webpack",
+    "build:debug": "NODE_ENV=debug webpack",
+    "deploy": "firebase deploy",
     "lint": "eslint --ignore-path .gitignore .",
     "start": "hjs-dev-server",
     "validate": "npm ls >/dev/null"

@@ -1,25 +1,26 @@
 import {LOGIN, LOGOUT} from '../constants/me';
 
 const initialState = {
-  id: null,
-  username: null
+  uid: null,
+  username: null,
+  token: null
 };
 
 export default (state = initialState, action) => {
-  switch (action.type) {
+  const {type, payload = {}} = action;
+
+  switch (type) {
 
   case LOGIN:
     return {
       ...state,
-      id: action.auth.id,
-      username: action.auth.username
+      ...payload
     };
 
   case LOGOUT:
     return {
       ...state,
-      id: null,
-      username: null
+      ...initialState
     };
 
   default:

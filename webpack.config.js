@@ -4,8 +4,15 @@ const makeWebpackConfig = require('hjs-webpack');
 const html = require('html-tagged-literals');
 const cssnano = require('cssnano');
 const path = require('path');
+const remove = require('lodash').remove;
+const webpack = require('webpack');
+
+const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+const DefinePlugin = webpack.DefinePlugin;
 
 const isDev = (process.argv[1] || '').indexOf('hjs-dev-server') !== -1;
+const debug = process.env.NODE_ENV === 'debug';
+const minify = isDev ? false : !debug;
 
 const renderHTML = (context) => html[isDev ? 'unindent' : 'minify']`
   <!DOCTYPE html>
@@ -30,10 +37,11 @@ const renderHTML = (context) => html[isDev ? 'unindent' : 'minify']`
 `;
 
 const config = makeWebpackConfig({
+  isDev,
   'in': 'src/app.js',
   out: 'public',
   clearBeforeBuild: true,
-  output: {hash: true},
+  output: {hash: minify},
   hostname: 'localhost',
   replace: {
     config: `src/config/${isDev ? 'development' : 'production'}.js`
@@ -43,15 +51,21 @@ const config = makeWebpackConfig({
 
 config.postcss.push(cssnano({
   normalizeUrl: false,
-  core: !isDev,
-  discardComments: {removeAll: !isDev}
+  core: minify,
+  discardComments: {removeAll: minify}
 }));
 
 config.resolve.alias = {
   l: path.resolve(__dirname, 'src', 'lib'),
   c: path.resolve(__dirname, 'src', 'components'),
   co: path.resolve(__dirname, 'src', 'containers'),
-  a: path.resolve(__dirname, 'src', 'actions')
+  a: path.resolve(__dirname, 'src', 'actions'),
+  p: path.resolve(__dirname, 'src', 'pages')
 };
+
+if (!minify) {
+  remove(config.plugins, (p) => p instanceof DefinePlugin);
+  remove(config.plugins, (p) => p instanceof UglifyJsPlugin);
+}
 
 module.exports = config;
