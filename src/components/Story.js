@@ -1,12 +1,23 @@
 import React, {Component} from 'react';
 
 import WordSelect from './WordSelect';
+import EmojiSelect from './EmojiSelect';
 import StoryItem from './StoryItem';
 
 export default class Story extends Component {
-  handleSelect = (value) => {
+  handleTextSelect = (value) => {
     if (value) {
-      this.props.onSubmit({type: 'text',
+      this.props.onSubmit({
+        type: 'text',
+        data: value
+      });
+    }
+  };
+
+  handleEmojiSelect = (value) => {
+    if (value) {
+      this.props.onSubmit({
+        type: 'emoji',
         data: value
       });
     }
@@ -24,7 +35,8 @@ export default class Story extends Component {
         <div className='story--items'>
           {story.data.map((item) => <StoryItem key={item.id} {...item} />)}
         </div>
-        <WordSelect onChange={this.handleSelect} />
+        <WordSelect onChange={this.handleTextSelect} />
+        <EmojiSelect onChange={this.handleEmojiSelect} />
       </div>
     );
   }

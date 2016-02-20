@@ -20,7 +20,6 @@ export default class WordSelect extends Component {
   render() {
     return (
       <Select
-        ref={(c) => {this._select = c;}}
         simpleValue
         placeholder='Type and scroll to select a word...'
         minimumInput={0}

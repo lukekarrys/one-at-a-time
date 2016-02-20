@@ -12,6 +12,7 @@
     "classnames": "^2.2.3",
     "common-english-words": "0.0.6",
     "dale-chall": "^0.2.2",
+    "emojione": "^2.1.0",
     "fillers": "^1.0.0",
     "firebase": "^2.4.1",
     "hedges": "^1.0.0",
