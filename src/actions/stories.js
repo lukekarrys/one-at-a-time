@@ -15,6 +15,31 @@ export const create = ({name, type = 'private'}) => (dispatch) => {
   dispatch(replace(`/stories/${ref.key()}`));
 };
 
+export const fetch = (id) => (dispatch, getState) => {
+  const {me} = getState();
+
+  if (!me.token) {
+    return dispatch({type: LOGOUT});
+  }
+
+  dispatch({type: actions.FETCH_START, payload: {id}});
+
+  const storyRef = fb.child(`stories/${id}`);
+  const query = storyRef.on('value', (snapshot) => {
+    dispatch({
+      type: actions.FETCH_SUCCESS,
+      payload: {
+        id,
+        ...snapshot.val()
+      }
+    });
+  });
+
+  return () => {
+    storyRef.off('value', query);
+  };
+};
+
 export const join = (id) => (dispatch, getState) => {
   const {me} = getState();
 
@@ -24,9 +49,8 @@ export const join = (id) => (dispatch, getState) => {
 
   dispatch({type: actions.JOINING, payload: {id}});
 
-  const storyRef = fb.child(`stories/${id}`);
-  const dataRef = fb.child(`storyData/${id}`);
-
+  let query;
+  const ref = fb.child(`storyData/${id}`);
   const onChildAdded = (snapshot) => dispatch({
     type: actions.APPEND_DATA,
     payload: {
@@ -37,8 +61,6 @@ export const join = (id) => (dispatch, getState) => {
       }
     }
   });
-
-  let query;
   const onValue = (snapshot) => {
     const data = snapshot.val() || {};
     const keys = Object.keys(data);
@@ -51,29 +73,20 @@ export const join = (id) => (dispatch, getState) => {
     });
 
     if (keys.length) {
-      query = dataRef
+      query = ref
         .orderByKey()
         .startAt(last(keys))
         .on('child_added', after(2, onChildAdded));
     }
     else {
-      query = dataRef.on('child_added', onChildAdded);
+      query = ref.on('child_added', onChildAdded);
     }
   };
 
-  dataRef.once('value', onValue);
-  storyRef.once('value', (snapshot) => {
-    dispatch({
-      type: actions.UPDATE_STORY,
-      payload: {
-        id,
-        ...snapshot.val()
-      }
-    });
-  });
+  ref.once('value', onValue);
 
   return () => {
-    dataRef.off('child_added', query);
+    ref.off('child_added', query);
   };
 };
 

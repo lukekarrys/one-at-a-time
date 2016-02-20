@@ -26,10 +26,6 @@ export default class Story extends Component {
   render() {
     const {story} = this.props;
 
-    if (!story || story.joining) {
-      return <span>Loading story...</span>;
-    }
-
     return (
       <div>
         <div className='story--items'>

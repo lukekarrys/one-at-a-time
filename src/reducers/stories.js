@@ -8,12 +8,22 @@ export default (state = initialState, action) => {
 
   switch (type) {
 
-  case actions.UPDATE_STORY:
+  case actions.FETCH_SUCCESS:
     return {
       ...state,
       [id]: {
         ...state[id],
+        fetching: false,
         ...payload
+      }
+    };
+
+  case actions.FETCH_START:
+    return {
+      ...state,
+      [id]: {
+        ...state[id],
+        fetching: true
       }
     };
 

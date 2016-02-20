@@ -4,14 +4,19 @@ import {bindActionCreators} from 'redux';
 import {PageHeader} from 'react-bootstrap';
 
 import Page from 'co/Page';
+import Loading from 'co/Loading';
 import * as storyActions from 'a/stories';
 import Story from 'c/Story';
 
 const mapStateToProps = (state, props) => {
   const {id} = props.params;
-  const story = state.stories[id] || {name: 'Story', data: []};
+  const story = state.stories[id];
 
-  return {id, story};
+  return {
+    id,
+    story,
+    syncing: story && (story.fetching || story.joining)
+  };
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -22,11 +27,13 @@ const mapDispatchToProps = (dispatch) => ({
 export default class StoryPage extends Component {
   componentDidMount() {
     const {id} = this.props;
-    this.closeRef = this.props.storyActions.join(id);
+    this.joinRef = this.props.storyActions.join(id);
+    this.fetchRef = this.props.storyActions.fetch(id);
   }
 
   componentWillUnmount() {
-    this.closeRef();
+    this.joinRef();
+    this.fetchRef();
   }
 
   handleSubmit = (item) => {
@@ -35,7 +42,11 @@ export default class StoryPage extends Component {
   };
 
   render() {
-    const {story} = this.props;
+    const {story, syncing} = this.props;
+
+    if (!story || syncing) {
+      return <Loading />;
+    }
 
     return (
       <Page>

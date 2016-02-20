@@ -1,7 +1,7 @@
 import * as actions from '../constants/storiesList';
 import fb from 'l/firebase';
 
-export const fetch = (id) => (dispatch, getState) => {
+export const fetch = () => (dispatch, getState) => {
   dispatch({type: actions.FETCH_START});
 
   const storiesRef = fb.child('stories');
@@ -25,18 +25,4 @@ export const fetch = (id) => (dispatch, getState) => {
   return () => {
     storiesRef.off('value', query);
   };
-};
-
-export const add = ({id, item}) => (dispatch, getState) => {
-  const {me} = getState();
-
-  if (me.token) {
-    fb.child(`storyData/${id}`).push({
-      ...item,
-      user: {
-        uid: me.uid,
-        username: me.username
-      }
-    });
-  }
 };
