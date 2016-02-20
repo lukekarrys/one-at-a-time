@@ -18,7 +18,7 @@ export default class StoryItem extends Component {
     }
 
     return (
-      <OverlayTrigger placement='bottom' overlay={<Tooltip>{user.username}</Tooltip>}>
+      <OverlayTrigger placement='bottom' overlay={<Tooltip id='story-item-user'>{user.username}</Tooltip>}>
         {content}
       </OverlayTrigger>
     );

@@ -1,4 +1,6 @@
-@footer-height: 40px;
+@footer-height: 34px;
+@footer-height-min: 49px;
+@footer-min: 500px;
 
 html {
   position: relative;
@@ -6,7 +8,10 @@ html {
 }
 
 body {
-  margin-bottom: @footer-height;
+  margin-bottom: @footer-height + 50px;
+  @media only screen and (max-width: @footer-min) {
+    margin-bottom: @footer-height-min + 50px;
+  }
 }
 
 footer {
@@ -18,12 +23,31 @@ footer {
   background: @gray-light;
   padding-left: @grid-gutter-width / 2;
   padding-right: @grid-gutter-width / 2;
+  font-size: 12px;
 
   p {
     margin: 10px 0 0 0;
     color: @gray-dark;
+
+    &:first-child {
+      float: left;
+    }
+
+    &:last-child {
+      float: right;
+    }
+
     a, a:hover {
       color: @gray-dark;
+    }
+  }
+
+  @media only screen and (max-width: @footer-min) {
+    height: @footer-height-min;
+    p {
+      text-align: center;
+      float: none !important;
+      margin: 4px 0 0 0
     }
   }
 

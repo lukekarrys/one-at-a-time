@@ -23,10 +23,10 @@ const renderHTML = (context) => html[isDev ? 'unindent' : 'minify']`
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="One At A Time">
-    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="/favicon.png">
     <link rel="icon" href="/favicon.png">
-    <link rel="icon" sizes="192x192" href="/favicon-192x192.png">
-    <link rel="apple-touch-icon-precomposed" href="/favicon-192x192.png">
+    <link rel="icon" sizes="192x192" href="/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="/favicon.png">
     <link rel="stylesheet" href="/${context.css}">
   </head>
   <body>
@@ -42,7 +42,7 @@ const config = makeWebpackConfig({
   out: 'public',
   clearBeforeBuild: true,
   output: {hash: minify},
-  hostname: 'localhost',
+  hostname: 'lukekarrys.local',
   replace: {
     config: `src/config/${isDev ? 'development' : 'production'}.js`
   },
