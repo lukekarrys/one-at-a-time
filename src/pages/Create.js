@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import Page from 'co/Page';
 import * as storyActions from 'a/stories';
 
 const mapStateToProps = (state, props) => ({});
@@ -18,9 +19,9 @@ export default class Create extends Component {
 
   render() {
     return (
-      <div>
+      <Page>
         <h1>Creating story...</h1>
-      </div>
+      </Page>
     );
   }
 }

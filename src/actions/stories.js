@@ -8,8 +8,8 @@ export const addItem = (item) => ({
   payload: item
 });
 
-export const create = () => (dispatch) => {
-  const ref = fb.child('stories').push({type: 'public'});
+export const create = (type = 'private') => (dispatch) => {
+  const ref = fb.child('stories').push({type});
   dispatch(replace(`/stories/${ref.key()}`));
 };
 

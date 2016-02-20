@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 
+import Page from 'co/Page';
+
 export default class JoinPage extends Component {
   render() {
     return (
-      <div>
+      <Page>
         <h1>Join Random</h1>
-      </div>
+      </Page>
     );
   }
 }
