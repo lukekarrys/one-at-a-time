@@ -10,7 +10,7 @@ import Story from 'c/Story';
 const mapStateToProps = (state, props) => {
   const {stories} = state;
   const {id} = props.params;
-  const story = stories[id] || {name: 'Story'};
+  const story = stories[id] || {name: 'Story', data: []};
 
   return {
     id,
