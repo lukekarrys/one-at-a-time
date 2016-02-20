@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 import {LinkContainer} from 'react-router-bootstrap';
-import {Navbar, Nav, MenuItem, NavItem, NavDropdown} from 'react-bootstrap';
+import {Navbar, Nav, MenuItem, NavDropdown} from 'react-bootstrap';
 
 const {
   Header: NavbarHeader,
@@ -96,9 +96,17 @@ export default class Header extends Component {
         </NavbarHeader>
         <NavbarCollapse>
           <Nav pullRight>
-            <LinkContainer to='/create'>
-              <NavItem>Create</NavItem>
+            <LinkContainer to='/stories'>
+              <MenuItem>Stories</MenuItem>
             </LinkContainer>
+            <NavDropdown title='Start' id='start-nav'>
+              <LinkContainer to='/create/private'>
+                <MenuItem>Private</MenuItem>
+              </LinkContainer>
+              <LinkContainer to='/create/public'>
+                <MenuItem>Public</MenuItem>
+              </LinkContainer>
+            </NavDropdown>
             {this.renderLoginDropdown()}
           </Nav>
         </NavbarCollapse>

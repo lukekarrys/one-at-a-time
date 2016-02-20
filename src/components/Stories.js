@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {ListGroup, ListGroupItem} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
+import {Link} from 'react-router';
 
 export default class Stories extends Component {
   render() {
@@ -8,6 +9,11 @@ export default class Stories extends Component {
 
     return (
       <ListGroup>
+        {!stories.length &&
+          <ListGroupItem>
+            There are no public stories. <Link to='/create/public'>Start one?</Link>
+          </ListGroupItem>
+        }
         {stories.map((story) =>
           <LinkContainer key={story.id} to={`/stories/${story.id}`}>
             <ListGroupItem>

@@ -42,7 +42,7 @@ const config = makeWebpackConfig({
   out: 'public',
   clearBeforeBuild: true,
   output: {hash: minify},
-  hostname: 'lukekarrys.local',
+  hostname: 'localhost',
   replace: {
     config: `src/config/${isDev ? 'development' : 'production'}.js`
   },

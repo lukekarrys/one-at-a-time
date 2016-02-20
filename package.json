@@ -15,6 +15,7 @@
     "emojione": "^2.1.0",
     "fillers": "^1.0.0",
     "firebase": "^2.4.1",
+    "gifshot": "^0.3.2",
     "hedges": "^1.0.0",
     "lodash": "^4.5.0",
     "most-common-words": "0.0.1",

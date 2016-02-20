@@ -13,6 +13,9 @@ export default class StoryItem extends Component {
     if (type === 'emoji') {
       content = <Emoji className={classes} emoji={data} />;
     }
+    else if (type === 'gif') {
+      content = <img className={classes} src={data} />;
+    }
     else {
       content = <Label className={classes}>{data}</Label>;
     }
