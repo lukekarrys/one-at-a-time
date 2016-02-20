@@ -2,8 +2,10 @@
   "firebase": "ss16-luke-dot-js",
   "public": "public",
   "rewrites": [
-    "source": "**",
-    "destination": "/index.html"
+    {
+      "source": "**",
+      "destination": "/index.html"
+    }
   ],
   "ignore": [
     "firebase.json",
