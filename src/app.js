@@ -1,4 +1,6 @@
 import './styles/theme.less';
+import '!!file?name=favicon.png!./favicon.png';
+import '!!file?name=favicon.ico!./favicon.ico';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
