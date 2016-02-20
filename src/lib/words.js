@@ -10,7 +10,7 @@ import yes from 'yes-no-words/yes';
 import no from 'yes-no-words/no';
 import superb from 'superb/words';
 import cats from 'cat-names/cat-names';
-import three from './3000Words';
+import three from './threeThousandWords';
 import commonWords from './commonWords';
 
 export default shuffle(uniq([
