@@ -1,7 +1,11 @@
 import {combineReducers} from 'redux';
+import {routerReducer as routing} from 'react-router-redux';
 
-import story from './story';
+import stories from './stories';
+import me from './me';
 
 export default combineReducers({
-  story
+  stories,
+  me,
+  routing
 });

@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {Nav, NavItem} from 'react-bootstrap';
+import {LinkContainer} from 'react-router-bootstrap';
 
-import * as storyActions from '../actions/story';
-
-import Story from '../components/Story';
+import * as storyActions from 'a/stories';
 
 const mapStateToProps = (state, props) => ({
   state,
@@ -18,12 +18,17 @@ const mapDispatchToProps = (dispatch) => ({
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Home extends Component {
   render() {
-    const {state} = this.props;
-
     return (
       <div>
-        <Story />
-        <pre>{JSON.stringify(state, null, 2)}</pre>
+        <h1>Start or Join a Story!</h1>
+        <Nav bsStyle='pills' stacked>
+          <LinkContainer to='/create'>
+            <NavItem>Start a Story and Invite Friends</NavItem>
+          </LinkContainer>
+          <LinkContainer to='/stories/join'>
+            <NavItem>Join a Random Story</NavItem>
+          </LinkContainer>
+        </Nav>
       </div>
     );
   }

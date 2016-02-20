@@ -1,9 +1,11 @@
 import {createStore, applyMiddleware, compose} from 'redux';
-import rootReducer from '../reducers';
 import thunk from 'redux-thunk';
+import {browserHistory} from 'react-router';
+import {routerMiddleware} from 'react-router-redux';
+import reducer from '../reducers';
 
 export default function configureStore(initialState = {}) {
-  const middleware = [thunk];
+  const middleware = [thunk, routerMiddleware(browserHistory)];
   const storeEnhancers = [];
 
   if (process.env.NODE_ENV !== 'production') {
@@ -14,7 +16,7 @@ export default function configureStore(initialState = {}) {
   }
 
   const store = createStore(
-    rootReducer,
+    reducer,
     initialState,
     compose(
       applyMiddleware(...middleware),
@@ -24,8 +26,8 @@ export default function configureStore(initialState = {}) {
 
   if (module.hot) {
     module.hot.accept('../reducers', () => {
-      const nextRootReducer = require('../reducers');
-      store.replaceReducer(nextRootReducer);
+      const nextReducer = require('../reducers');
+      store.replaceReducer(nextReducer);
     });
   }
 

@@ -39,23 +39,16 @@ const config = makeWebpackConfig({
   html: renderHTML
 });
 
-const replaceLoader = (loader, replacer) => (l) => {
-  const match = new RegExp(`(^|!)(${loader}-loader)($|!)`);
-  if (l && l.loader && l.loader.match(match)) {
-    l.loader = l.loader.replace(match, replacer);
-  }
-};
-
-const cssDevIdent = isDev ? '[path][name]___[local]___' : '';
-const cssModulesLoader = `?modules&localIdentName=${cssDevIdent}[hash:base64:5]`;
-config.module.loaders.forEach(replaceLoader('css', `$1$2${cssModulesLoader}$3`));
-
 config.postcss.push(cssnano({
   normalizeUrl: false,
   core: !isDev,
   discardComments: {removeAll: !isDev}
 }));
 
-config.resolve.alias = {lib: path.resolve(__dirname, 'src', 'lib')};
+config.resolve.alias = {
+  l: path.resolve(__dirname, 'src', 'lib'),
+  c: path.resolve(__dirname, 'src', 'components'),
+  a: path.resolve(__dirname, 'src', 'actions')
+};
 
 module.exports = config;

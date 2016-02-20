@@ -1,3 +1,3 @@
 module.exports = {
-  env: 'production'
+  FIREBASE_ROOT: 'https://ss16-luke-dot-js.firebaseio.com'
 };
