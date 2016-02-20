@@ -13,6 +13,12 @@ export default (
     <IndexRoute component={Home} />
     <Route path='create' component={Create} />
 
+    <Route path='create'>
+      <IndexRoute component={Create} />
+      <Route path='public' component={Create} />
+      <Route path='private' component={Create} />
+    </Route>
+
     <Route path='stories'>
       <IndexRoute component={Stories} />
       <Route path='join' component={Join} />

@@ -23,14 +23,22 @@ export default class Home extends Component {
       <Page>
         <h1>Start or Join a Story!</h1>
         <Nav bsStyle='pills' stacked>
-          <LinkContainer to='/create'>
-            <NavItem>Start a Story and Invite Friends</NavItem>
+          <LinkContainer to='/create/private'>
+            <NavItem>
+              <strong>Start a Private Story</strong>
+              <br />
+              <small>(people will need the url to join)</small>
+            </NavItem>
           </LinkContainer>
-          <LinkContainer to='/create'>
-            <NavItem>Start a Story That Anyone Can Join</NavItem>
+          <LinkContainer to='/create/public'>
+            <NavItem>
+              <strong>Start a Public Story</strong>
+              <br />
+              <small>(anyone can join and the url will be listed on the stories page)</small>
+            </NavItem>
           </LinkContainer>
           <LinkContainer to='/stories/join'>
-            <NavItem>Join a Random Story</NavItem>
+            <NavItem><strong>Join a Public Story</strong></NavItem>
           </LinkContainer>
         </Nav>
       </Page>
