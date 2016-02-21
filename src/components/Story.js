@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {debounce} from 'lodash';
 import {Row, Col, Alert} from 'react-bootstrap';
 import gifshot from 'gifshot';
 import {findDOMNode} from 'react-dom';
 
+import PositionChange from './PositionChange';
 import position from 'l/yPosition';
 import WordSelect from './WordSelect';
 import EmojiSelect from './EmojiSelect';
@@ -18,22 +18,9 @@ export default class Story extends Component {
     this.state = {error: null, inputPostion: 'top'};
   }
 
-  componentDidMount() {
-    window.addEventListener('resize', this.handlePositionChange);
-    window.addEventListener('scroll', this.handlePositionChange);
-    this.handlePositionChange();
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.handlePositionChange);
-    window.removeEventListener('scroll', this.handlePositionChange);
-  }
-
-  handlePositionChange = debounce(() => {
-    this.setState({
-      inputPostion: position(findDOMNode(this.refs.inputs))
-    });
-  }, 50);
+  handlePositionChange = () => {
+    this.setState({inputPostion: position(findDOMNode(this.refs.inputs))});
+  };
 
   clearError = () => this.setState({error: null});
   handleData = (type, data) => {
@@ -53,7 +40,7 @@ export default class Story extends Component {
     const {error, inputPostion} = this.state;
 
     return (
-      <div>
+      <PositionChange onChange={this.handlePositionChange}>
         <div className='story--items'>
           {!story.data.length &&
             <Alert bsStyle='success'>
@@ -84,7 +71,7 @@ export default class Story extends Component {
             </Col>
           }
         </Row>
-      </div>
+      </PositionChange>
     );
   }
 }

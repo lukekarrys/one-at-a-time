@@ -8,7 +8,7 @@ export default class WordSelect extends Component {
     return (
       <StoryItemSelect
         allowCreate
-        placeholder='Type and scroll to select a word...'
+        placeholder='Type a word!'
         labelKey='word'
         valueKey='word'
         options={words}
