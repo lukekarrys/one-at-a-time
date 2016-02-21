@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {PageHeader} from 'react-bootstrap';
+import {PageHeader, Glyphicon} from 'react-bootstrap';
 
 import Page from 'co/Page';
 import Loading from 'co/Loading';
@@ -58,7 +58,14 @@ export default class StoryPage extends Component {
 
     return (
       <Page>
-        <PageHeader>{story.name} <CopyUrl /></PageHeader>
+        <PageHeader>
+          {story.name}
+          {story.type &&
+            <small>{' '}<Glyphicon glyph={story.type === 'public' ? 'globe' : 'lock'} /></small>
+          }
+          {' '}
+          <CopyUrl />
+        </PageHeader>
         <Story story={story} me={me} onSubmit={this.handleSubmit} />
       </Page>
     );

@@ -25,8 +25,12 @@ export default class Story extends Component {
 
   isDisabled = () => {
     const {story, me} = this.props;
+    const MAX_POSTS = 2;
+
+    if (!story || !story.forceSharing || story.data.length <= MAX_POSTS) return false;
+
     const userIds = map(story.data, 'user.uid');
-    return without(takeRight(userIds, 2), me.uid).length === 0;
+    return without(takeRight(userIds, MAX_POSTS), me.uid).length === 0;
   }
 
   clearError = () => this.setState({error: null});
