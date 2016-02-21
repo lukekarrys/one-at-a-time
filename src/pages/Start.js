@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class Create extends Component {
+export default class StartPage extends Component {
   constructor(props) {
     super(props);
     this.state = {name: ''};
@@ -23,28 +23,28 @@ export default class Create extends Component {
 
   handleKeyPress = (e) => {
     if (e.charCode === 13) {
-      this.handleCreate();
+      this.handleStart();
     }
-  }
+  };
 
-  handleCreate = () => {
+  handleStart = () => {
     const {type} = this.props;
     const {name} = this.state;
-    this.props.storyActions.create({type, name});
-  }
+    this.props.storyActions.start({type, name});
+  };
 
   render() {
     const {type} = this.props;
 
     return (
       <Page>
-        <PageHeader>Creating {type} story...</PageHeader>
+        <PageHeader>Start a {`${type.charAt(0).toUpperCase()}${type.slice(1).toLowerCase()}`} Story</PageHeader>
         <Input
           type='text'
           placeholder={'Enter a fun name for your story'}
           onKeyPress={this.handleKeyPress}
           onChange={(e) => this.setState({name: e.target.value})}
-          buttonAfter={<Button onClick={this.handleCreate}>Create</Button>}
+          buttonAfter={<Button onClick={this.handleStart}>Start</Button>}
         />
       </Page>
     );

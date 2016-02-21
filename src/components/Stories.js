@@ -11,7 +11,7 @@ export default class Stories extends Component {
       <ListGroup>
         {!stories.length &&
           <ListGroupItem>
-            There are no public stories. <Link to='/create/public'>Start one?</Link>
+            There are no public stories. <Link to='/start/public'>Start one?</Link>
           </ListGroupItem>
         }
         {stories.map((story) =>

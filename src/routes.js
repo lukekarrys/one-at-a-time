@@ -5,7 +5,7 @@ import Auth from 'co/Auth';
 import App from 'co/App';
 
 import Home from 'p/Home';
-import Create from 'p/Create';
+import Start from 'p/Start';
 import Story from 'p/Story';
 import Stories from 'p/Stories';
 import Login from 'p/Login';
@@ -16,10 +16,10 @@ export default (
     <IndexRoute component={Home} />
     <Route path='login' component={Login} />
 
-    <Route path='create' component={Auth()}>
-      <IndexRoute component={Create} />
-      <Route path='public' component={Create} />
-      <Route path='private' component={Create} />
+    <Route path='Start' component={Auth()}>
+      <IndexRoute component={Start} />
+      <Route path='public' component={Start} />
+      <Route path='private' component={Start} />
     </Route>
 
     <Route path='stories'>

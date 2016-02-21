@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class JoinPage extends Component {
+export default class LoginPage extends Component {
   handleLogin = (type) => {
     const {meActions, redirect} = this.props;
     meActions.login({type, redirect});

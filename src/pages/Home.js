@@ -19,13 +19,13 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class Home extends Component {
+export default class HomePage extends Component {
   render() {
     return (
       <Page>
         <Jumbotron>
           <h1 className='text-center'>
-            <Logo interval={3000} />
+            <Logo interval={1500} />
           </h1>
           <p>
             As the saying goes, an <Label bsStyle='success'>emoji</Label> is worth a million words and a <Label bsStyle='success'>gif</Label> of your wonderful face is worth 10 million.
@@ -36,14 +36,14 @@ export default class Home extends Component {
           <small>*words are still just worth one word, but no one is really keeping score</small>
         </Jumbotron>
         <Nav bsStyle='pills' stacked>
-          <LinkContainer to='/create/private'>
+          <LinkContainer to='/start/private'>
             <NavItem>
               <strong>Start a Private Story</strong>
               <br />
               <small>(people will need the url to join)</small>
             </NavItem>
           </LinkContainer>
-          <LinkContainer to='/create/public'>
+          <LinkContainer to='/start/public'>
             <NavItem>
               <strong>Start a Public Story</strong>
               <br />

@@ -66,14 +66,14 @@ export default class Header extends Component {
         </NavbarHeader>
         <NavbarCollapse>
           <Nav pullRight>
-            <LinkContainer to='/stories'>
+            <LinkContainer onlyActiveOnIndex to='/stories'>
               <MenuItem>Stories</MenuItem>
             </LinkContainer>
             <NavDropdown title='Start' id='start-nav'>
-              <LinkContainer to='/create/private'>
+              <LinkContainer to='/start/private'>
                 <MenuItem>Private</MenuItem>
               </LinkContainer>
-              <LinkContainer to='/create/public'>
+              <LinkContainer to='/start/public'>
                 <MenuItem>Public</MenuItem>
               </LinkContainer>
             </NavDropdown>
