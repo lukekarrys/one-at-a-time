@@ -25,7 +25,7 @@ export default class HomePage extends Component {
       <Page>
         <Jumbotron>
           <h1 className='text-center'>
-            <Logo interval={1500} />
+            <Logo interval={1500} fixed />
           </h1>
           <p className='text-success'>
             As the saying goes, an <Label bsStyle='success'>emoji</Label> is worth a million words and a <Label bsStyle='success'>gif</Label> of your wonderful face is worth 10 million.

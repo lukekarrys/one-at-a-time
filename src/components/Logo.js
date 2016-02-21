@@ -14,7 +14,8 @@ export default class Logo extends Component {
   static defaultProps = {
     interval: 500,
     cycle: false,
-    onHover: false
+    onHover: false,
+    fixed: false
   };
 
   constructor(props) {
@@ -72,7 +73,7 @@ export default class Logo extends Component {
   };
 
   render() {
-    const {onHover} = this.props;
+    const {onHover, fixed} = this.props;
     const {brand} = this.state;
 
     const events = {};
@@ -84,7 +85,18 @@ export default class Logo extends Component {
 
     return (
       <span {...events}>
-        one {typeof brand === 'number' ? BRANDS[brand] : BLANK} at a time
+        one
+        {' '}
+        <span className={fixed ? 'logo--change--fixed' : ''}>
+          {typeof brand === 'number' &&
+            <span>{BRANDS[brand]}</span>
+          }
+          {typeof brand !== 'number' &&
+            (fixed ? <span>{(' ').replace(/ /g, '\u00a0')}</span> : <span>{BLANK}</span>)
+          }
+        </span>
+        {' '}
+        at a time
       </span>
     );
   }
