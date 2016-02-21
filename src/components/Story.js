@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Row, Col, Alert} from 'react-bootstrap';
 import gifshot from 'gifshot';
-import {map} from 'lodash';
+import {map, without, takeRight} from 'lodash';
 import {findDOMNode} from 'react-dom';
 
 import PositionChange from './PositionChange';
@@ -16,16 +16,22 @@ const hasWebCam = gifshot.isWebCamGIFSupported();
 export default class Story extends Component {
   constructor(props) {
     super(props);
-    this.state = {error: null, inputPostion: 'top', disabled: false};
+    this.state = {error: null, inputPostion: 'top'};
   }
 
   handlePositionChange = () => {
     this.setState({inputPostion: position(findDOMNode(this.refs.inputs))});
   };
 
+  isDisabled = () => {
+    const {story, me} = this.props;
+    const userIds = map(story.data, 'user.uid');
+    return without(takeRight(userIds, 2), me.uid).length === 0;
+  }
+
   clearError = () => this.setState({error: null});
   handleData = (type, data) => {
-    if (type && data && !this.state.disabled) {
+    if (type && data && !this.isDisabled()) {
       this.setState({error: null});
       this.props.onSubmit({type, data});
     }
@@ -38,9 +44,11 @@ export default class Story extends Component {
 
   render() {
     const {story, me} = this.props;
-    const {error, inputPostion, disabled} = this.state;
-    const hasUser = map(story.data, 'user.uid').indexOf(me.uid) > -1;
+    const {error, inputPostion} = this.state;
+    const userIds = map(story.data, 'user.uid');
+    const hasUser = userIds.indexOf(me.uid) > -1;
     const hasData = !!story.data.length;
+    const disabled = this.isDisabled();
 
     return (
       <PositionChange onChange={this.handlePositionChange}>
