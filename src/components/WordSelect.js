@@ -21,8 +21,9 @@ export default class WordSelect extends Component {
     return (
       <Select
         simpleValue
+        autoBlur
         placeholder='Type and scroll to select a word...'
-        minimumInput={0}
+        minimumInput={2}
         labelKey='word'
         valueKey='word'
         loadOptions={this.loadOptions}

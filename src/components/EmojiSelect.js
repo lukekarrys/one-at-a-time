@@ -21,8 +21,9 @@ export default class EmojiSelect extends Component {
     return (
       <Select
         simpleValue
+        autoBlur
         placeholder='Type and scroll to select an emoji...'
-        minimumInput={0}
+        minimumInput={2}
         labelKey='emoji'
         valueKey='emoji'
         loadOptions={this.loadOptions}

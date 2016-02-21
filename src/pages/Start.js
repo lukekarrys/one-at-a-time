@@ -46,7 +46,7 @@ export default class StartPage extends Component {
           placeholder={'Enter a fun name for your story'}
           onKeyPress={this.handleKeyPress}
           onChange={(e) => this.setState({name: e.target.value})}
-          buttonAfter={<Button disabled={disabled} onClick={this.handleStart}>Start</Button>}
+          buttonAfter={<Button disabled={disabled} bsStyle={disabled ? 'default' : 'primary'} onClick={this.handleStart}>Start</Button>}
         />
       </Page>
     );
