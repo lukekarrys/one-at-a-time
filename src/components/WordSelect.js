@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Async as Select} from 'react-select';
+import {Async as Select} from '@lukekarrys/react-select';
 import {sampleSize} from 'lodash';
 
 import words from 'l/words';
@@ -24,7 +24,7 @@ export default class WordSelect extends Component {
         autoBlur
         allowCreate
         placeholder='Type and scroll to select a word...'
-        minimumInput={2}
+        minimumInput={0}
         labelKey='word'
         valueKey='word'
         loadOptions={this.loadOptions}

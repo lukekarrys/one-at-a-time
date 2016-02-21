@@ -44,8 +44,7 @@ const config = makeWebpackConfig({
   output: {hash: minify},
   hostname: 'localhost',
   replace: {
-    config: `src/config/${isDev ? 'development' : 'production'}.js`,
-    'react-select': `${__dirname}/node_modules/@lukekarrys/react-select`
+    config: `src/config/${isDev ? 'development' : 'production'}.js`
   },
   html: renderHTML
 });

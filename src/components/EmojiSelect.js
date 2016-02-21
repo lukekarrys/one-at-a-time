@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Async as Select} from 'react-select';
+import {Async as Select} from '@lukekarrys/react-select';
 import {sampleSize} from 'lodash';
 
 import Emoji, {names} from 'c/Emoji';
@@ -23,7 +23,7 @@ export default class EmojiSelect extends Component {
         simpleValue
         autoBlur
         placeholder='Type and scroll to select an emoji...'
-        minimumInput={2}
+        minimumInput={0}
         labelKey='emoji'
         valueKey='emoji'
         loadOptions={this.loadOptions}
