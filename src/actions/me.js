@@ -46,12 +46,14 @@ export const login = ({type = 'anonymous', redirect} = {}) => (dispatch) => {
     ? (cb) => firebase.authAnonymously(cb)
     : (cb) => firebase.authWithOAuthPopup(type, cb);
 
+  dispatch({type: actions.LOGIN_START});
+
   action((err, auth) => {
     if (err) {
       dispatch(syncLogout());
       return;
     }
-    // dispatch(syncLogin(auth));
+    dispatch(syncLogin(auth));
     if (redirect) {
       dispatch(replace(redirect));
     }

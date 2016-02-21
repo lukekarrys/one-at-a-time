@@ -1,9 +1,10 @@
-import {LOGIN, LOGOUT} from '../constants/me';
+import * as actions from '../constants/me';
 
 const initialState = {
   uid: null,
   username: null,
-  token: null
+  token: null,
+  fetching: false
 };
 
 export default (state = initialState, action) => {
@@ -11,13 +12,20 @@ export default (state = initialState, action) => {
 
   switch (type) {
 
-  case LOGIN:
+  case actions.LOGIN_START:
     return {
       ...state,
-      ...payload
+      fetching: true
     };
 
-  case LOGOUT:
+  case actions.LOGIN:
+    return {
+      ...state,
+      ...payload,
+      fetching: false
+    };
+
+  case actions.LOGOUT:
     return {
       ...state,
       ...initialState
