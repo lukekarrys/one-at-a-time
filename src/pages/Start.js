@@ -30,11 +30,13 @@ export default class StartPage extends Component {
   handleStart = () => {
     const {type} = this.props;
     const {name} = this.state;
+    if (!name) return;
     this.props.storyActions.start({type, name});
   };
 
   render() {
     const {type} = this.props;
+    const disabled = !this.state.name;
 
     return (
       <Page>
@@ -44,7 +46,7 @@ export default class StartPage extends Component {
           placeholder={'Enter a fun name for your story'}
           onKeyPress={this.handleKeyPress}
           onChange={(e) => this.setState({name: e.target.value})}
-          buttonAfter={<Button onClick={this.handleStart}>Start</Button>}
+          buttonAfter={<Button disabled={disabled} onClick={this.handleStart}>Start</Button>}
         />
       </Page>
     );

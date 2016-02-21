@@ -35,6 +35,11 @@ export default class Story extends Component {
     return (
       <div>
         <div className='story--items'>
+          {!story.data.length &&
+            <Alert bsStyle='success'>
+              This story doesn't have anything in it yet. Invite some people or add the first emoji/gif/word!
+            </Alert>
+          }
           {story.data.map((item) => <StoryItem key={item.id} {...item} />)}
         </div>
         {error &&

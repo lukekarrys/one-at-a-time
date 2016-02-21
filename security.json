@@ -1,0 +1,12 @@
+{
+  "rules": {
+    "stories": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "storyData": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    }
+  }
+}
