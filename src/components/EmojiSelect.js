@@ -9,7 +9,7 @@ export default class EmojiSelect extends Component {
   render() {
     return (
       <StoryItemSelect
-        placeholder='Select an emoji!'
+        placeholder='Type to find an emoji!'
         labelKey='emoji'
         valueKey='emoji'
         options={names}
