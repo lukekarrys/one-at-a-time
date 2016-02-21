@@ -3,6 +3,7 @@
 
   "rules": {
     "react/prop-types": 0,
-    "no-magic-numbers": 0
+    "no-magic-numbers": 0,
+    "react/jsx-no-bind": 1
   }
 }

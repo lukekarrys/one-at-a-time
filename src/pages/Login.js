@@ -21,6 +21,9 @@ export default class LoginPage extends Component {
     meActions.login({type, redirect});
   };
 
+  handleLoginAnonymous = () => this.handleLogin();
+  handleLoginTwitter = () => this.handleLogin('twitter');
+
   render() {
     return (
       <Page>
@@ -28,8 +31,8 @@ export default class LoginPage extends Component {
         <p>To do that thing you were trying to do, you must be logged in, either anonymously or with Twitter.</p>
         <p>There's no real difference for now, but at some point in the future there'll probably be a way to find stories you participated in but only if you were logged in via Twitter at the time.</p>
         <ButtonToolbar>
-          <Button onClick={() => this.handleLogin()} bsStyle='primary'>Login Anonymously</Button>
-          <Button onClick={() => this.handleLogin('twitter')} bsStyle='primary'>Login with Twitter</Button>
+          <Button onClick={this.handleLoginAnonymous} bsStyle='primary'>Login Anonymously</Button>
+          <Button onClick={this.handleLoginTwitter} bsStyle='primary'>Login with Twitter</Button>
         </ButtonToolbar>
       </Page>
     );

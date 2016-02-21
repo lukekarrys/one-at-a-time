@@ -45,7 +45,10 @@ export default class Story extends Component {
     }
   };
 
-  onGifError = (message) => {
+  handleText = (value) => this.handleData('text', value);
+  handleEmoji = (value) => this.handleData('emoji', value);
+  handleGif = (value) => this.handleData('gif', value);
+  handleGifError = (message) => {
     this.setState({
       error: message
     });
@@ -74,16 +77,16 @@ export default class Story extends Component {
           <Col sm={hasWebCam ? 10 : 12} md={hasWebCam ? 10 : 12} lg={hasWebCam ? 11 : 12}>
             <Row>
               <Col sm={6}>
-                <WordSelect onChange={(word) => this.handleData('text', word)} />
+                <WordSelect onChange={this.handleText} />
               </Col>
               <Col sm={6}>
-                <EmojiSelect onChange={(emoji) => this.handleData('emoji', emoji)} />
+                <EmojiSelect onChange={this.handleEmoji} />
               </Col>
             </Row>
           </Col>
           {hasWebCam &&
             <Col sm={2} md={2} lg={1}>
-              <GifButton onError={this.onGifError} onGif={(gif) => this.handleData('gif', gif)} />
+              <GifButton onError={this.handleGifError} onGif={this.handleGif} />
             </Col>
           }
         </Row>

@@ -1,4 +1,4 @@
-import {shuffle, uniq} from 'lodash';
+import {uniqBy} from 'lodash';
 import buzzwords from 'buzzwords';
 import weasels from 'weasels';
 import dc from 'dale-chall';
@@ -13,7 +13,7 @@ import cats from 'cat-names/cat-names';
 import three from './threeThousandWords';
 import commonWords from './commonWords';
 
-export default shuffle(uniq([
+export default uniqBy([
   ...three,
   ...commonWords,
   ...superb,
@@ -27,4 +27,4 @@ export default shuffle(uniq([
   ...spache,
   ...fillers,
   ...hedges
-]).map((word) => ({word})));
+].map((word) => ({word: word.toLowerCase()})), 'word');
