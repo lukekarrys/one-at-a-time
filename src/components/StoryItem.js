@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Tooltip, OverlayTrigger} from 'react-bootstrap';
+import {Popover, OverlayTrigger} from 'react-bootstrap';
 
 import Emoji from 'c/Emoji';
 
@@ -20,8 +20,17 @@ export default class StoryItem extends Component {
       content = <span className={classes}>{data}</span>;
     }
 
+    const popover = (
+      <Popover id='story-item-info'>
+        <strong>User:</strong> {user.username}
+        {type === 'emoji' &&
+          <span><br /><strong>Emoji:</strong> {data}</span>
+        }
+      </Popover>
+    );
+
     return (
-      <OverlayTrigger placement='bottom' overlay={<Tooltip id='story-item-user'>{user.username}</Tooltip>}>
+      <OverlayTrigger placement='bottom' trigger='click' rootClose overlay={popover}>
         {content}
       </OverlayTrigger>
     );

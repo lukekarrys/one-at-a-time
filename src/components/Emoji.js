@@ -11,7 +11,6 @@ export default class Emoji extends Component {
 
     return (
       <span
-        title={emoji}
         dangerouslySetInnerHTML={{
           __html: toImage(`:${emoji}:`)
         }}
