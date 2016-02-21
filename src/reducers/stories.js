@@ -55,7 +55,7 @@ export default (state = initialState, action) => {
       [id]: {
         ...state[id],
         joining: false,
-        data: payload.data || []
+        data: [...(payload.data || [])]
       }
     };
 

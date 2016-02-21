@@ -16,7 +16,7 @@ const hasWebCam = gifshot.isWebCamGIFSupported();
 export default class Story extends Component {
   constructor(props) {
     super(props);
-    this.state = {error: null, inputPostion: 'top'};
+    this.state = {error: null, inputPostion: 'top', disabled: false};
   }
 
   handlePositionChange = () => {
@@ -25,7 +25,7 @@ export default class Story extends Component {
 
   clearError = () => this.setState({error: null});
   handleData = (type, data) => {
-    if (type && data) {
+    if (type && data && !this.state.disabled) {
       this.setState({error: null});
       this.props.onSubmit({type, data});
     }
@@ -38,7 +38,7 @@ export default class Story extends Component {
 
   render() {
     const {story, me} = this.props;
-    const {error, inputPostion} = this.state;
+    const {error, inputPostion, disabled} = this.state;
     const hasUser = map(story.data, 'user.uid').indexOf(me.uid) > -1;
     const hasData = !!story.data.length;
 
@@ -66,20 +66,25 @@ export default class Story extends Component {
             {error}
           </Alert>
         }
+        {disabled &&
+          <Alert bsStyle='warning'>
+            Whoa! Slow down a little bit and let some other people add to the story.
+          </Alert>
+        }
         <Row ref='inputs' className={`story--inputs story--inputs--${inputPostion}`}>
           <Col sm={hasWebCam ? 10 : 12} md={hasWebCam ? 10 : 12} lg={hasWebCam ? 11 : 12}>
             <Row>
               <Col sm={6}>
-                <WordSelect onChange={this.handleText} />
+                <WordSelect onChange={this.handleText} disabled={disabled} />
               </Col>
               <Col sm={6}>
-                <EmojiSelect onChange={this.handleEmoji} />
+                <EmojiSelect onChange={this.handleEmoji} disabled={disabled} />
               </Col>
             </Row>
           </Col>
           {hasWebCam &&
             <Col sm={2} md={2} lg={1}>
-              <GifButton onError={this.handleGifError} onGif={this.handleGif} />
+              <GifButton onError={this.handleGifError} onGif={this.handleGif} disabled={disabled} />
             </Col>
           }
         </Row>
