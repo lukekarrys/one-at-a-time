@@ -22,7 +22,7 @@ export const syncLogin = (auth) => {
   if (provider === 'anonymous') {
     const localUsername = localStorage.getItem('anonymous_username');
     data.username = localUsername || sillyname();
-    data.avatar = `https://avatars.discourse.org/v2/letter/${data.username.charAt(0)}/18BC9C/18.png`;
+    data.avatar = `https://api.adorable.io/avatars/18/${data.username.replace(/ /g, '')}`;
     localStorage.setItem('anonymous_username', data.username);
   }
   else if (provider === 'twitter') {
