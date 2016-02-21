@@ -7,6 +7,7 @@ import Page from 'co/Page';
 import Loading from 'co/Loading';
 import * as storyActions from 'a/stories';
 import Story from 'c/Story';
+import CopyUrl from 'c/CopyUrl';
 
 const mapStateToProps = (state, props) => {
   const {id} = props.params;
@@ -50,7 +51,7 @@ export default class StoryPage extends Component {
 
     return (
       <Page>
-        <PageHeader>{story.name}</PageHeader>
+        <PageHeader>{story.name} <CopyUrl /></PageHeader>
         <Story story={story} onSubmit={this.handleSubmit} />
       </Page>
     );
