@@ -4,7 +4,7 @@ import {Row, Col, Alert} from 'react-bootstrap';
 import gifshot from 'gifshot';
 import {findDOMNode} from 'react-dom';
 
-import position from 'l/elementPosition';
+import position from 'l/yPosition';
 import WordSelect from './WordSelect';
 import EmojiSelect from './EmojiSelect';
 import GifButton from './GifButton';
@@ -31,28 +31,22 @@ export default class Story extends Component {
 
   handlePositionChange = debounce(() => {
     this.setState({
-      inputPostion: position(findDOMNode(this.refs.inputs)).half
+      inputPostion: position(findDOMNode(this.refs.inputs))
     });
   }, 50);
 
-  handleData = (type, value) => {
-    if (value) {
+  clearError = () => this.setState({error: null});
+  handleData = (type, data) => {
+    if (type && data) {
       this.setState({error: null});
-      this.props.onSubmit({
-        type,
-        data: value
-      });
+      this.props.onSubmit({type, data});
     }
   };
 
   handleText = (value) => this.handleData('text', value);
   handleEmoji = (value) => this.handleData('emoji', value);
   handleGif = (value) => this.handleData('gif', value);
-  handleGifError = (message) => {
-    this.setState({
-      error: message
-    });
-  };
+  handleGifError = (message) => this.setState({error: message});
 
   render() {
     const {story} = this.props;
@@ -69,7 +63,7 @@ export default class Story extends Component {
           {story.data.map((item) => <StoryItem key={item.id} {...item} />)}
         </div>
         {error &&
-          <Alert bsStyle='danger' onDismiss={() => this.setState({error: null})}>
+          <Alert bsStyle='danger' onDismiss={this.clearError}>
             {error}
           </Alert>
         }

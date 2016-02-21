@@ -8,8 +8,5 @@ export default (element) => {
     element = element.offsetParent;
   }
 
-  return {
-    y,
-    half: y < (winHeight / 2) ? 'top' : 'bottom'
-  };
+  return y < (winHeight / 2) ? 'top' : 'bottom';
 };

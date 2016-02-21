@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {findDOMNode} from 'react-dom';
 import {Async as Select} from '@lukekarrys/react-select';
-import {sampleSize} from 'lodash';
+import {sampleSize, defer} from 'lodash';
 
 const MAX_SIZE = 20;
 
@@ -10,7 +10,7 @@ export default class StoryItemSelect extends Component {
     const {options, valueKey} = this.props;
 
     if (!input) {
-      cb(null, {options: sampleSize(options, MAX_SIZE)});
+      cb(null, {options: sampleSize(options, MAX_SIZE), complete: false});
       return;
     }
 
@@ -28,14 +28,18 @@ export default class StoryItemSelect extends Component {
       return 0;
     });
 
-    cb(null, {options: sorted.slice(0, MAX_SIZE)});
+    cb(null, {options: sorted.slice(0, MAX_SIZE), complete: false});
   };
 
-  handleOpen = () => setTimeout(() => {
+  // Set timeout ensures the menu is in the dom
+  handleOpen = () => defer(() => {
+    const dom = findDOMNode(this._select);
     // Hack to reset scroll position
-    findDOMNode(this._select)
-      .querySelector('.Select-menu')
-      .scrollTop = 0;
+    dom.querySelector('.Select-menu').scrollTop = 0;
+    // Load random options on each open
+    this._select.loadOptions('');
+    // Show the outer menu now that were done
+    dom.querySelector('.Select-menu-outer').style.visibility = 'visible';
   });
 
   setRef = (c) => {
