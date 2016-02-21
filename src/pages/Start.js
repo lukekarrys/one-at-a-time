@@ -55,7 +55,12 @@ export default class StartPage extends Component {
 
     return (
       <Page>
-        <PageHeader>Start a {`${upperFirst(type)}`} Story</PageHeader>
+        <PageHeader>
+          Start a {`${upperFirst(type)}`} Story
+          {type === 'private' &&
+            <small className='xs'>Private means that the url will not be shown on the public page, but anyone with the url will still be able to join.</small>
+          }
+        </PageHeader>
         <Input
           type='text'
           placeholder={'Enter a fun name for your story'}
@@ -75,7 +80,7 @@ export default class StartPage extends Component {
               {' '}
               When this option is on, <strong>the same person won't be able to post too many times in a row</strong>.
               <br />
-              <Glyphicon glyph='info-sign' />
+              <Glyphicon glyph='user' />
               {' '}
               If you want to make a solo story <strong>you should keep this off</strong>.
             </span>
