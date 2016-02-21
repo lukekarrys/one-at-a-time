@@ -14,6 +14,7 @@ export default (state = initialState, action) => {
       [id]: {
         ...state[id],
         fetching: false,
+        error: null,
         ...payload
       }
     };
@@ -23,7 +24,18 @@ export default (state = initialState, action) => {
       ...state,
       [id]: {
         ...state[id],
-        fetching: true
+        fetching: true,
+        error: null
+      }
+    };
+
+  case actions.FETCH_ERROR:
+    return {
+      ...state,
+      [id]: {
+        ...state[id],
+        fetching: false,
+        error: payload.error
       }
     };
 

@@ -26,11 +26,24 @@ export const fetch = (id) => (dispatch, getState) => {
 
   const storyRef = fb.child(`stories/${id}`);
   const query = storyRef.on('value', (snapshot) => {
+    const val = snapshot.val();
+
+    if (val === null) {
+      dispatch({
+        type: actions.FETCH_ERROR,
+        payload: {
+          id,
+          error: 'That story does not exist'
+        }
+      });
+      return;
+    }
+
     dispatch({
       type: actions.FETCH_SUCCESS,
       payload: {
         id,
-        ...snapshot.val()
+        ...val
       }
     });
   });

@@ -5,6 +5,7 @@ import {PageHeader} from 'react-bootstrap';
 
 import Page from 'co/Page';
 import Loading from 'co/Loading';
+import Error from 'co/Error';
 import * as storyActions from 'a/stories';
 import Story from 'c/Story';
 import CopyUrl from 'c/CopyUrl';
@@ -16,6 +17,7 @@ const mapStateToProps = (state, props) => {
   return {
     id,
     story,
+    error: story && story.error,
     syncing: story && (story.fetching || story.joining)
   };
 };
@@ -43,10 +45,14 @@ export default class StoryPage extends Component {
   };
 
   render() {
-    const {story, syncing} = this.props;
+    const {story, syncing, error} = this.props;
 
     if (!story || syncing) {
       return <Loading />;
+    }
+
+    if (error) {
+      return <Error error={error} />;
     }
 
     return (
