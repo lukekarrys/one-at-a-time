@@ -8,6 +8,7 @@ import Home from 'p/Home';
 import Start from 'p/Start';
 import Story from 'p/Story';
 import Stories from 'p/Stories';
+import UserStories from 'p/UserStories';
 import Login from 'p/Login';
 import FourOhFour from 'p/FourOhFour';
 
@@ -25,6 +26,7 @@ export default (
     <Route path='stories'>
       <IndexRoute component={Stories} />
       <Route component={Auth()}>
+        <Route path='mine' component={UserStories} />
         <Route path=':id' component={Story} />
       </Route>
     </Route>

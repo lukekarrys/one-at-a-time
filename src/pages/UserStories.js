@@ -21,13 +21,13 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class StoriesPage extends Component {
+export default class UserStoriesPage extends Component {
   componentDidMount() {
-    this.closeRef = this.props.storiesListActions.fetch();
+    this.storiesRef = this.props.storiesListActions.fetchMine();
   }
 
   componentWillUnmount() {
-    this.closeRef();
+    this.storiesRef();
   }
 
   render() {
@@ -39,8 +39,8 @@ export default class StoriesPage extends Component {
 
     return (
       <Page>
-        <PageHeader>Choose a Public Story to Join</PageHeader>
-        <Stories stories={stories} />
+        <PageHeader>Your Created Stories</PageHeader>
+        <Stories stories={stories} isUser />
       </Page>
     );
   }

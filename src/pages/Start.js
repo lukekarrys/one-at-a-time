@@ -7,7 +7,8 @@ import Page from 'co/Page';
 import * as storyActions from 'a/stories';
 
 const mapStateToProps = (state, props) => ({
-  type: ['public', 'private'].indexOf(props.route.path) === -1 ? 'private' : props.route.path
+  type: ['public', 'private'].indexOf(props.route.path) === -1 ? 'private' : props.route.path,
+  uid: state.me.uid
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -28,10 +29,10 @@ export default class StartPage extends Component {
   };
 
   handleStart = () => {
-    const {type} = this.props;
+    const {type, uid} = this.props;
     const {name} = this.state;
     if (!name) return;
-    this.props.storyActions.start({type, name});
+    this.props.storyActions.start({type, name, uid});
   };
 
   render() {

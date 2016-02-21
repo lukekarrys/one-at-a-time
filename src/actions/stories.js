@@ -10,8 +10,8 @@ export const addItem = (item) => ({
   payload: item
 });
 
-export const start = ({name, type = 'private'}) => (dispatch) => {
-  const ref = fb.child('stories').push({type, name});
+export const start = ({name, type = 'private', uid}) => (dispatch) => {
+  const ref = fb.child('stories').push({type, name, uid});
   dispatch(replace(`/stories/${ref.key()}`));
 };
 

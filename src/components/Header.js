@@ -40,6 +40,10 @@ export default class Header extends Component {
       );
       return (
         <NavDropdown title={user} id='me-nav'>
+          <LinkContainer to='/stories/mine'>
+            <MenuItem>Stories</MenuItem>
+          </LinkContainer>
+          <MenuItem divider />
           <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
         </NavDropdown>
       );

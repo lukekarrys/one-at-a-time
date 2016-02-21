@@ -1,23 +1,29 @@
 import React, {Component} from 'react';
-import {ListGroup, ListGroupItem} from 'react-bootstrap';
+import {ListGroup, ListGroupItem, Glyphicon} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 import {Link} from 'react-router';
 
 export default class Stories extends Component {
   render() {
-    const {stories} = this.props;
+    const {stories, isUser} = this.props;
 
     return (
       <ListGroup>
         {!stories.length &&
           <ListGroupItem>
-            There are no public stories. <Link to='/start/public'>Start one?</Link>
+            {isUser
+              ? <span>You have not created any stories yet. <Link to='/start/private'>Start one?</Link></span>
+              : <span>There are no public stories. <Link to='/start/public'>Start one?</Link></span>
+            }
           </ListGroupItem>
         }
         {stories.map((story) =>
           <LinkContainer key={story.id} to={`/stories/${story.id}`}>
             <ListGroupItem>
               {story.name}
+              {isUser && story.type === 'private' &&
+                <span>{' '}<Glyphicon glyph='lock' /></span>
+              }
             </ListGroupItem>
           </LinkContainer>
         )}
