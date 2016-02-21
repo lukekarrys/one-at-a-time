@@ -35,7 +35,7 @@ export default class HomePage extends Component {
           </p>
           <small>*words are still just worth one word, but no one is really keeping score</small>
         </Jumbotron>
-        <Nav bsStyle='pills' stacked>
+        <Nav bsStyle='pills' stacked className='home--nav'>
           <LinkContainer to='/start/private'>
             <NavItem>
               <strong>Start a Private Story</strong>
@@ -47,11 +47,11 @@ export default class HomePage extends Component {
             <NavItem>
               <strong>Start a Public Story</strong>
               <br />
-              <small>(anyone can join and the url will be listed on the stories page)</small>
+              <small>(the url will be listed on the stories page)</small>
             </NavItem>
           </LinkContainer>
           <LinkContainer to='/stories'>
-            <NavItem><strong>Join a Public Story</strong></NavItem>
+            <NavItem><strong>Find a Public Story</strong></NavItem>
           </LinkContainer>
         </Nav>
       </Page>

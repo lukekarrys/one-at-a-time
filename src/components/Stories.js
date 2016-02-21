@@ -21,8 +21,8 @@ export default class Stories extends Component {
           <LinkContainer key={story.id} to={`/stories/${story.id}`}>
             <ListGroupItem>
               {story.name}
-              {isUser && story.type === 'private' &&
-                <span>{' '}<Glyphicon glyph='lock' /></span>
+              {isUser &&
+                <span>{' '}<Glyphicon glyph={story.type === 'private' ? 'lock' : 'globe'} /></span>
               }
             </ListGroupItem>
           </LinkContainer>
