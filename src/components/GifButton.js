@@ -8,7 +8,8 @@ export default class GifButton extends Component {
       gifHeight: 48,
       gifWidth: 48,
       interval: 0.2,
-      numFrames: 5
+      numFrames: 5,
+      keepCameraOn: false
     }, (obj) => {
       if (!obj.error) {
         this.props.onGif(obj.image);
