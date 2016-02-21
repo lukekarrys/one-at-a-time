@@ -74,16 +74,16 @@ export default class Story extends Component {
           <Col sm={hasWebCam ? 10 : 12} md={hasWebCam ? 10 : 12} lg={hasWebCam ? 11 : 12}>
             <Row>
               <Col sm={6}>
-                <WordSelect onChange={(...args) => this.handleData('text', ...args)} />
+                <WordSelect onChange={(word) => this.handleData('text', word)} />
               </Col>
               <Col sm={6}>
-                <EmojiSelect onChange={(...args) => this.handleData('emoji', ...args)} />
+                <EmojiSelect onChange={(emoji) => this.handleData('emoji', emoji)} />
               </Col>
             </Row>
           </Col>
           {hasWebCam &&
             <Col sm={2} md={2} lg={1}>
-              <GifButton onError={this.onGifError} onGif={(...args) => this.handleData('gif', ...args)} />
+              <GifButton onError={this.onGifError} onGif={(gif) => this.handleData('gif', gif)} />
             </Col>
           }
         </Row>

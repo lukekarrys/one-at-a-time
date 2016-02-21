@@ -22,6 +22,7 @@ export default class WordSelect extends Component {
       <Select
         simpleValue
         autoBlur
+        allowCreate
         placeholder='Type and scroll to select a word...'
         minimumInput={2}
         labelKey='word'

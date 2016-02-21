@@ -5,6 +5,7 @@
   "author": "Luke Karrys <luke@lukekarrys.com>",
   "dependencies": {
     "3000-words-list": "0.0.3",
+    "@lukekarrys/react-select": "0.0.2",
     "bootstrap": "^3.3.6",
     "bootswatch": "^3.3.6",
     "buzzwords": "^1.0.1",

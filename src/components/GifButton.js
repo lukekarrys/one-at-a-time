@@ -21,18 +21,6 @@ export default class GifButton extends Component {
   }
 
   render() {
-    if (!gifshot.isWebCamGIFSupported()) {
-      return (
-        <Button block disabled className='disabled'>
-          No
-          {' '}
-          <Glyphicon glyph='camera' />
-          {' '}
-          support
-        </Button>
-      );
-    }
-
     return (
       <Button onClick={this.handleGif} block>
         <Glyphicon glyph='camera' />
