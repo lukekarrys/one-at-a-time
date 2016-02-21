@@ -1,16 +1,39 @@
 import React, {Component} from 'react';
+import {debounce} from 'lodash';
 import {Row, Col, Alert} from 'react-bootstrap';
+import gifshot from 'gifshot';
+import {findDOMNode} from 'react-dom';
 
+import position from 'l/elementPosition';
 import WordSelect from './WordSelect';
 import EmojiSelect from './EmojiSelect';
 import GifButton from './GifButton';
 import StoryItem from './StoryItem';
 
+const hasWebCam = gifshot.isWebCamGIFSupported();
+
 export default class Story extends Component {
   constructor(props) {
     super(props);
-    this.state = {error: null};
+    this.state = {error: null, inputPostion: 'top'};
   }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.handlePositionChange);
+    window.addEventListener('scroll', this.handlePositionChange);
+    this.handlePositionChange();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handlePositionChange);
+    window.removeEventListener('scroll', this.handlePositionChange);
+  }
+
+  handlePositionChange = debounce(() => {
+    this.setState({
+      inputPostion: position(findDOMNode(this.refs.inputs)).half
+    });
+  }, 50);
 
   handleData = (type, value) => {
     if (value) {
@@ -30,7 +53,7 @@ export default class Story extends Component {
 
   render() {
     const {story} = this.props;
-    const {error} = this.state;
+    const {error, inputPostion} = this.state;
 
     return (
       <div>
@@ -47,16 +70,22 @@ export default class Story extends Component {
             {error}
           </Alert>
         }
-        <Row>
-          <Col xs={12} sm={5}>
-            <WordSelect onChange={(...args) => this.handleData('text', ...args)} />
+        <Row ref='inputs' className={`story--inputs story--inputs--${inputPostion}`}>
+          <Col sm={hasWebCam ? 10 : 12} md={hasWebCam ? 10 : 12} lg={hasWebCam ? 11 : 12}>
+            <Row>
+              <Col sm={6}>
+                <WordSelect onChange={(...args) => this.handleData('text', ...args)} />
+              </Col>
+              <Col sm={6}>
+                <EmojiSelect onChange={(...args) => this.handleData('emoji', ...args)} />
+              </Col>
+            </Row>
           </Col>
-          <Col xs={12} sm={5}>
-            <EmojiSelect onChange={(...args) => this.handleData('emoji', ...args)} />
-          </Col>
-          <Col xs={12} sm={2}>
-            <GifButton onError={this.onGifError} onGif={(...args) => this.handleData('gif', ...args)} />
-          </Col>
+          {hasWebCam &&
+            <Col sm={2} md={2} lg={1}>
+              <GifButton onError={this.onGifError} onGif={(...args) => this.handleData('gif', ...args)} />
+            </Col>
+          }
         </Row>
       </div>
     );

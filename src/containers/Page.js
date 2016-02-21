@@ -10,8 +10,10 @@ export default class Page extends Component {
     if (!width) {
       return {
         sm: 12,
-        lg: 8,
-        lgOffset: 2
+        md: 10,
+        mdOffset: 1,
+        lg: 10,
+        lgOffset: 1
       };
     }
 

@@ -1,32 +1,34 @@
 .story--items {
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   .clearfix();
 }
 
 .story--item {
   float: left;
-  margin: 0 12px 12px 0;
-  min-height: 48px;
-
+  margin-right: 12px;
 }
 
 .story--item--text {
-  font-size: 30px;
-  text-align: left;
+  font-size: 20px;
   white-space: normal;
-  border-radius: 12px;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 .story--item--gif {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
+  margin-top: 2px;
+  margin-bottom: 2px;
   border-radius: 12px;
 }
 
 .story--item--emoji {
+  margin-top: 2px;
+  margin-bottom: 2px;
   img {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     border-radius: 12px;
   }
 }
@@ -40,4 +42,21 @@
 
 .story--select {
   margin-bottom: 10px;
+}
+
+.story--inputs--bottom {
+  .Select-menu-outer {
+    top: -197px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+  }
+
+  .is-open > .Select-control {
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
 }

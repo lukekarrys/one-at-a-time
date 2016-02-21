@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Label, Tooltip, OverlayTrigger} from 'react-bootstrap';
+import {Tooltip, OverlayTrigger} from 'react-bootstrap';
 
 import Emoji from 'c/Emoji';
 
@@ -17,7 +17,7 @@ export default class StoryItem extends Component {
       content = <img className={classes} src={data} />;
     }
     else {
-      content = <Label className={classes}>{data}</Label>;
+      content = <span className={classes}>{data}</span>;
     }
 
     return (
