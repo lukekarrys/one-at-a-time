@@ -17,6 +17,7 @@ const mapStateToProps = (state, props) => {
   return {
     id,
     story,
+    me: state.me,
     error: story && story.error,
     syncing: story && (story.fetching || story.joining)
   };
@@ -45,7 +46,7 @@ export default class StoryPage extends Component {
   };
 
   render() {
-    const {story, syncing, error} = this.props;
+    const {story, syncing, error, me} = this.props;
 
     if (!story || syncing) {
       return <Loading />;
@@ -58,7 +59,7 @@ export default class StoryPage extends Component {
     return (
       <Page>
         <PageHeader>{story.name} <CopyUrl /></PageHeader>
-        <Story story={story} onSubmit={this.handleSubmit} />
+        <Story story={story} me={me} onSubmit={this.handleSubmit} />
       </Page>
     );
   }

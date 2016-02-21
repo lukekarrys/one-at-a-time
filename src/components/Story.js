@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Row, Col, Alert} from 'react-bootstrap';
 import gifshot from 'gifshot';
+import {map} from 'lodash';
 import {findDOMNode} from 'react-dom';
 
 import PositionChange from './PositionChange';
@@ -36,19 +37,30 @@ export default class Story extends Component {
   handleGifError = (message) => this.setState({error: message});
 
   render() {
-    const {story} = this.props;
+    const {story, me} = this.props;
     const {error, inputPostion} = this.state;
+    const hasUser = map(story.data, 'user.uid').indexOf(me.uid) > -1;
+    const hasData = !!story.data.length;
 
     return (
       <PositionChange onChange={this.handlePositionChange}>
         <div className='story--items'>
-          {!story.data.length &&
+          {!hasData &&
             <Alert bsStyle='success'>
               This story doesn't have anything in it yet. Invite some people or add the first emoji/gif/word!
             </Alert>
           }
           {story.data.map((item) => <StoryItem key={item.id} {...item} />)}
         </div>
+        {hasData && !hasUser &&
+          <Alert bsStyle='info'>
+            <span>Use the inputs below to enter a word or emoji</span>
+            {hasWebCam &&
+              <span> or take a picture with your webcam</span>
+            }
+            <span>!</span>
+          </Alert>
+        }
         {error &&
           <Alert bsStyle='danger' onDismiss={this.clearError}>
             {error}
