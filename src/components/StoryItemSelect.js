@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {findDOMNode} from 'react-dom';
-import {Async as Select} from '@lukekarrys/react-select';
+import {Async as Select} from 'react-select';
 import {sampleSize, defer} from 'lodash';
 
 const MAX_SIZE = 20;
 
 export default class StoryItemSelect extends Component {
   loadOptions = (input, cb) => {
-    const {options, valueKey} = this.props;
+    const {options, valueKey, customAllowCreate} = this.props;
 
     if (!input) {
       cb(null, {options: sampleSize(options, MAX_SIZE), complete: false});
@@ -16,7 +16,7 @@ export default class StoryItemSelect extends Component {
 
     const searchInput = input.toLowerCase();
     const filtered = options.filter((option) => option[valueKey].toLowerCase().indexOf(searchInput) > -1);
-    const sorted = filtered.sort((a, b) => {
+    let sorted = filtered.sort((a, b) => {
       if (a[valueKey].toLowerCase() === searchInput) {
         return -1;
       }
@@ -27,6 +27,10 @@ export default class StoryItemSelect extends Component {
 
       return 0;
     });
+
+    if (!sorted.length && customAllowCreate) {
+      sorted = [{word: input}];
+    }
 
     cb(null, {options: sorted.slice(0, MAX_SIZE), complete: false});
   };

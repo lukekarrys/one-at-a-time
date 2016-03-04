@@ -7,7 +7,7 @@ export default class WordSelect extends Component {
   render() {
     return (
       <StoryItemSelect
-        allowCreate
+        customAllowCreate
         placeholder='Type a word!'
         labelKey='word'
         valueKey='word'
