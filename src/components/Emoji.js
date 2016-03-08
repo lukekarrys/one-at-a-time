@@ -6,7 +6,6 @@ export const names = Object.keys(emojioneList)
 
 export default class Emoji extends Component {
   render() {
-    // eslint-disable-next-line no-use-before-define
     const {emoji, ...rest} = this.props;
 
     return (

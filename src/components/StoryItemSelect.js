@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {findDOMNode} from 'react-dom';
 import {Async as Select} from 'react-select';
-import {sampleSize, defer} from 'lodash';
+import {sampleSize, defer, omit} from 'lodash';
 
 const MAX_SIZE = 20;
 
@@ -51,8 +51,7 @@ export default class StoryItemSelect extends Component {
   };
 
   render() {
-    // eslint-disable-next-line no-use-before-define
-    const {className, options, ...rest} = this.props;
+    const {className, ...rest} = this.props;
 
     return (
       <Select
@@ -64,7 +63,7 @@ export default class StoryItemSelect extends Component {
         loadOptions={this.loadOptions}
         className={`${className} story--select`}
         onOpen={this.handleOpen}
-        {...rest}
+        {...omit(rest, 'options')}
       />
     );
   }
