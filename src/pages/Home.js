@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {Nav, NavItem} from 'react-bootstrap';
+import {Nav, NavItem, Jumbotron, Label} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
-import {Jumbotron, Label} from 'react-bootstrap';
 
 import Logo from 'c/Logo';
 import Page from 'co/Page';
