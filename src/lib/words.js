@@ -5,7 +5,6 @@ import dc from 'dale-chall';
 import spache from 'spache';
 import fillers from 'fillers';
 import hedges from 'hedges';
-import common from 'most-common-words';
 import yes from 'yes-no-words/yes';
 import no from 'yes-no-words/no';
 import superb from 'superb/words';
@@ -20,7 +19,6 @@ export default uniqBy([
   ...cats,
   ...yes,
   ...no,
-  ...common,
   ...buzzwords,
   ...weasels,
   ...dc,
