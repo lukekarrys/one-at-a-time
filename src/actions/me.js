@@ -6,6 +6,11 @@ import * as actions from '../constants/me';
 
 const {localStorage} = window;
 
+export const syncLogout = () => {
+  localStorage.removeItem('anonymous_username');
+  return {type: actions.LOGOUT};
+};
+
 export const syncLogin = (auth) => {
   if (!auth) {
     return syncLogout();
@@ -34,11 +39,6 @@ export const syncLogin = (auth) => {
     type: actions.LOGIN,
     payload: data
   };
-};
-
-export const syncLogout = () => {
-  localStorage.removeItem('anonymous_username');
-  return {type: actions.LOGOUT};
 };
 
 export const login = ({type = 'anonymous', redirect} = {}) => (dispatch) => {
