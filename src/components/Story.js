@@ -23,7 +23,20 @@ export default class Story extends Component {
     this.setState({inputPostion: position(findDOMNode(this.refs.inputs))});
   };
 
-  isDisabled = () => {
+  handleText = (value) => this.handleData('text', value);
+  handleEmoji = (value) => this.handleData('emoji', value);
+  handleGif = (value) => this.handleData('gif', value);
+  handleGifError = (message) => this.setState({error: message});
+  clearError = () => this.setState({error: null});
+
+  handleData(type, data) {
+    if (type && data) {
+      this.setState({error: null});
+      this.props.onSubmit({type, data});
+    }
+  }
+
+  isDisabled() {
     const {story, me} = this.props;
     const MAX_POSTS = 2;
 
@@ -32,19 +45,6 @@ export default class Story extends Component {
     const userIds = map(story.data, 'user.uid');
     return without(takeRight(userIds, MAX_POSTS), me.uid).length === 0;
   }
-
-  clearError = () => this.setState({error: null});
-  handleData = (type, data) => {
-    if (type && data && !this.isDisabled()) {
-      this.setState({error: null});
-      this.props.onSubmit({type, data});
-    }
-  };
-
-  handleText = (value) => this.handleData('text', value);
-  handleEmoji = (value) => this.handleData('emoji', value);
-  handleGif = (value) => this.handleData('gif', value);
-  handleGifError = (message) => this.setState({error: message});
 
   render() {
     const {story, me} = this.props;

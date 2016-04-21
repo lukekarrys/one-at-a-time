@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {Input, Button, PageHeader, Glyphicon} from 'react-bootstrap';
+import {Checkbox, HelpBlock, InputGroup, FormGroup, FormControl, Button, PageHeader, Glyphicon} from 'react-bootstrap';
 import {upperFirst} from 'lodash';
 
 import Page from 'co/Page';
 import * as storyActions from 'a/stories';
+
+const InputGroupButton = InputGroup.Button;
 
 const mapStateToProps = (state, props) => ({
   type: ['public', 'private'].indexOf(props.route.path) === -1 ? 'private' : props.route.path,
@@ -36,7 +38,7 @@ export default class StartPage extends Component {
   handleStart = () => {
     const {type, uid} = this.props;
     const {name, forceSharing} = this.state;
-    if (!name) return;
+
     this.props.storyActions.start({
       type,
       name,
@@ -61,31 +63,37 @@ export default class StartPage extends Component {
             <small className='xs'>Private means that the url will not be shown on the public page, but anyone with the url will still be able to join.</small>
           }
         </PageHeader>
-        <Input
-          type='text'
-          placeholder={'Enter a fun name for your story'}
-          onKeyPress={this.handleKeyPress}
-          value={name}
-          onChange={this.setName}
-          buttonAfter={<Button disabled={disabled} bsStyle={disabled ? 'default' : 'primary'} onClick={this.handleStart}>Start</Button>}
-        />
-        <Input
-          checked={forceSharing}
-          type='checkbox'
-          label='Encourage sharing'
-          onChange={this.setSharing}
-          help={
-            <span>
-              <Glyphicon glyph='question-sign' />
-              {' '}
-              When this option is on, <strong>the same person won't be able to post too many times in a row</strong>.
-              <br />
-              <Glyphicon glyph='user' />
-              {' '}
-              If you want to make a solo story <strong>you should keep this off</strong>.
-            </span>
-          }
-        />
+        <FormGroup>
+          <InputGroup>
+            <FormControl
+              type='text'
+              placeholder={'Enter a fun name for your story'}
+              onKeyPress={this.handleKeyPress}
+              value={name}
+              onChange={this.setName}
+            />
+            <InputGroupButton>
+              <Button disabled={disabled} bsStyle={disabled ? 'default' : 'primary'} onClick={this.handleStart}>Start</Button>
+            </InputGroupButton>
+          </InputGroup>
+        </FormGroup>
+        <FormGroup>
+          <Checkbox
+            checked={forceSharing}
+            onChange={this.setSharing}
+          >
+            Encourage sharing
+          </Checkbox>
+          <HelpBlock>
+            <Glyphicon glyph='question-sign' />
+            {' '}
+            When this option is on, <strong>the same person won't be able to post too many times in a row</strong>.
+            <br />
+            <Glyphicon glyph='user' />
+            {' '}
+            If you want to make a solo story <strong>you should keep this off</strong>.
+          </HelpBlock>
+        </FormGroup>
       </Page>
     );
   }

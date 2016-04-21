@@ -9,7 +9,9 @@ export default function configureStore(initialState = {}) {
   const storeEnhancers = [];
 
   if (process.env.NODE_ENV !== 'production') {
-    middleware.push(require('redux-logger')());
+    middleware.push(require('redux-logger')({
+      collapsed: true
+    }));
     storeEnhancers.push(
       window.devToolsExtension ? window.devToolsExtension() : (f) => f
     );
