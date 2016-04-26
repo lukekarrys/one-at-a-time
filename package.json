@@ -71,8 +71,8 @@
     "webpack": "^1.13.0"
   },
   "engines": {
-    "node": "^5.9.1",
-    "npm": "^3.8.3"
+    "node": "5.9.1",
+    "npm": "3.8.3"
   },
   "license": "UNLICENSED",
   "main": "index.js",
