@@ -44,9 +44,6 @@ const config = makeWebpackConfig({
   clearBeforeBuild: true,
   output: {hash: minify},
   hostname: 'localhost',
-  replace: {
-    config: `src/config/${isDev ? 'development' : 'production'}.js`
-  },
   html: renderHTML
 });
 

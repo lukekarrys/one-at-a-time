@@ -31,7 +31,7 @@ export const fetch = () => (dispatch, getState) => {
 export const fetchMine = () => (dispatch, getState) => {
   const {me} = getState();
 
-  if (!me.token) {
+  if (!me.uid) {
     return dispatch({type: LOGOUT});
   }
 

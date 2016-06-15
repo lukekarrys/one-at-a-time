@@ -11,12 +11,12 @@ import {syncHistoryWithStore} from 'react-router-redux';
 import configureStore from './store/configureStore';
 import routes from './routes';
 import * as meActions from 'a/me';
-import firebase from 'l/firebase';
+import {auth} from 'l/firebase';
 
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
 
-firebase.onAuth((auth) => store.dispatch(meActions.syncLogin(auth)));
+auth.onAuthStateChanged((user) => store.dispatch(meActions.loginUser(user)));
 
 ReactDOM.render((
   <Provider store={store}>

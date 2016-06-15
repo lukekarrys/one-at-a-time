@@ -12,13 +12,13 @@ export const addItem = (item) => ({
 
 export const start = ({name, uid, type = 'private', forceSharing = true}) => (dispatch) => {
   const ref = fb.child('stories').push({type, name, uid, forceSharing});
-  dispatch(replace(`/stories/${ref.key()}`));
+  dispatch(replace(`/stories/${ref.key}`));
 };
 
 export const fetch = (id) => (dispatch, getState) => {
   const {me} = getState();
 
-  if (!me.token) {
+  if (!me.uid) {
     return dispatch({type: LOGOUT});
   }
 
@@ -56,7 +56,7 @@ export const fetch = (id) => (dispatch, getState) => {
 export const join = (id) => (dispatch, getState) => {
   const {me} = getState();
 
-  if (!me.token) {
+  if (!me.uid) {
     return dispatch({type: LOGOUT});
   }
 
@@ -69,7 +69,7 @@ export const join = (id) => (dispatch, getState) => {
     payload: {
       id,
       data: {
-        id: snapshot.key(),
+        id: snapshot.key,
         ...snapshot.val()
       }
     }
@@ -106,7 +106,7 @@ export const join = (id) => (dispatch, getState) => {
 export const add = ({id, item}) => (dispatch, getState) => {
   const {me} = getState();
 
-  if (me.token) {
+  if (me.uid) {
     fb.child(`storyData/${id}`).push({
       ...item,
       user: {

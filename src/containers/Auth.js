@@ -13,7 +13,7 @@ export default (Page) => {
     }
 
     checkAuth(props) {
-      if (!props.token) {
+      if (!props.uid) {
         browserHistory.replace({
           pathname: 'login',
           query: {
@@ -24,9 +24,9 @@ export default (Page) => {
     }
 
     render() {
-      const {token} = this.props;
+      const {uid} = this.props;
 
-      if (!token) {
+      if (!uid) {
         return (<div />);
       }
 
@@ -39,6 +39,6 @@ export default (Page) => {
   }
 
   return connect(({me}) => ({
-    token: me.token
+    uid: me.uid
   }))(AuthenticatedComponent);
 };

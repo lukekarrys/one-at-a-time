@@ -3,7 +3,7 @@ import * as actions from '../constants/me';
 const initialState = {
   uid: null,
   username: null,
-  token: null,
+  avatar: null,
   fetching: false
 };
 

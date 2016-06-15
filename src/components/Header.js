@@ -31,7 +31,7 @@ export default class Header extends Component {
   renderLoginDropdown() {
     const {me} = this.props;
 
-    if (me.token) {
+    if (me.uid) {
       const user = (
         <span>
           {me.username}

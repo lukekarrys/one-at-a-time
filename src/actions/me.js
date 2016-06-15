@@ -1,4 +1,4 @@
-import firebase from 'l/firebase';
+import {auth as fbAuth, twitter as fbTwitter} from 'l/firebase';
 import {replace} from 'react-router-redux';
 import sillyname from 'sillyname';
 
@@ -6,61 +6,57 @@ import * as actions from '../constants/me';
 
 const {localStorage} = window;
 
-export const syncLogout = () => {
+export const logout = () => (dispatch) => {
+  fbAuth.signOut();
   localStorage.removeItem('anonymous_username');
-  return {type: actions.LOGOUT};
+  dispatch({type: actions.LOGOUT});
 };
 
-export const syncLogin = (auth) => {
+export const loginUser = (auth) => (dispatch, getState) => {
   if (!auth) {
-    return syncLogout();
+    return dispatch(logout());
   }
 
-  const {provider} = auth;
+  const {uid} = getState().me;
+
+  if (uid) {
+    return null;
+  }
 
   const data = {
-    token: auth.token,
-    uid: auth.uid,
-    provider: auth.provider
+    uid: auth.uid
   };
 
-  if (provider === 'anonymous') {
+  if (auth.isAnonymous) {
     const localUsername = localStorage.getItem('anonymous_username');
     data.username = localUsername || sillyname();
-    data.avatar = `https://api.adorable.io/avatars/18/${data.username.replace(/ /g, '')}`;
+    data.avatar = `https://api.adorable.io/avatars/18/${data.uid.replace(/ /g, '')}`;
     localStorage.setItem('anonymous_username', data.username);
   }
-  else if (provider === 'twitter') {
-    data.username = auth.twitter.username;
-    data.avatar = auth.twitter.profileImageURL;
+  else {
+    data.username = auth.providerData[0].displayName;
+    data.avatar = auth.providerData[0].photoURL;
   }
 
-  return {
+  return dispatch({
     type: actions.LOGIN,
     payload: data
-  };
-};
-
-export const login = ({type = 'anonymous', redirect} = {}) => (dispatch) => {
-  const action = type === 'anonymous'
-    ? (cb) => firebase.authAnonymously(cb)
-    : (cb) => firebase.authWithOAuthPopup(type, cb);
-
-  dispatch({type: actions.LOGIN_START});
-
-  action((err, auth) => {
-    if (err) {
-      dispatch(syncLogout());
-      return;
-    }
-    dispatch(syncLogin(auth));
-    if (redirect) {
-      dispatch(replace(redirect));
-    }
   });
 };
 
-export const logout = () => (dispatch) => {
-  firebase.unauth();
-  dispatch(syncLogout());
+export const login = ({type = 'anonymous', redirect} = {}) => (dispatch) => {
+  dispatch({type: actions.LOGIN_START});
+
+  const auth = type === 'anonymous'
+    ? fbAuth.signInAnonymously()
+    : fbAuth.signInWithPopup(fbTwitter);
+
+  auth.then((result) => {
+    // The main app.js file handles dispatching the loginUser action creator
+    if (redirect) {
+      dispatch(replace(redirect));
+    }
+  }).catch((err) => {
+    dispatch(logout(err));
+  });
 };
