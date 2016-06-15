@@ -1,4 +1,3 @@
-import {noop} from 'lodash';
 import * as actions from '../constants/storiesList';
 import fb from 'l/firebase';
 import {LOGOUT} from '../constants/me';
@@ -34,7 +33,7 @@ export const fetchMine = () => (dispatch, getState) => {
 
   if (!me.uid) {
     dispatch({type: LOGOUT});
-    return noop;
+    return () => {};
   }
 
   dispatch({type: actions.FETCH_START});

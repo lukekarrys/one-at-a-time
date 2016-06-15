@@ -1,5 +1,5 @@
 import {replace} from 'react-router-redux';
-import {after, last, noop} from 'lodash';
+import {after, last} from 'lodash';
 
 import {LOGOUT} from '../constants/me';
 import * as actions from '../constants/stories';
@@ -20,7 +20,7 @@ export const fetch = (id) => (dispatch, getState) => {
 
   if (!me.uid) {
     dispatch({type: LOGOUT});
-    return noop;
+    return () => {};
   }
 
   dispatch({type: actions.FETCH_START, payload: {id}});
@@ -58,7 +58,7 @@ export const join = (id) => (dispatch, getState) => {
 
   if (!me.uid) {
     dispatch({type: LOGOUT});
-    return noop;
+    return () => {};
   }
 
   dispatch({type: actions.JOINING, payload: {id}});
