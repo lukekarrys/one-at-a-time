@@ -1,7 +1,8 @@
 import React from 'react';
 import {Route, IndexRoute} from 'react-router';
+import {UserAuthWrapper} from 'redux-auth-wrapper';
+import {routerActions} from 'react-router-redux';
 
-import Auth from 'co/Auth';
 import App from 'co/App';
 
 import Home from 'p/Home';
@@ -12,23 +13,28 @@ import UserStories from 'p/UserStories';
 import Login from 'p/Login';
 import FourOhFour from 'p/FourOhFour';
 
+const Auth = UserAuthWrapper({
+  authSelector: (state) => state.me,
+  authenticatingSelector: (state) => state.me.fetching,
+  redirectAction: routerActions.replace,
+  wrapperDisplayName: 'Auth'
+});
+
 export default (
   <Route path='/' component={App}>
     <IndexRoute component={Home} />
     <Route path='login' component={Login} />
 
-    <Route path='Start' component={Auth()}>
-      <IndexRoute component={Start} />
-      <Route path='public' component={Start} />
-      <Route path='private' component={Start} />
+    <Route path='start'>
+      <IndexRoute component={Auth(Start)} />
+      <Route path='public' component={Auth(Start)} />
+      <Route path='private' component={Auth(Start)} />
     </Route>
 
     <Route path='stories'>
       <IndexRoute component={Stories} />
-      <Route component={Auth()}>
-        <Route path='mine' component={UserStories} />
-        <Route path=':id' component={Story} />
-      </Route>
+      <Route path='mine' component={Auth(UserStories)} />
+      <Route path=':id' component={Auth(Story)} />
     </Route>
 
     <Route path='*' component={FourOhFour} />

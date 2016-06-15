@@ -1,11 +1,6 @@
 import * as actions from '../constants/me';
 
-const initialState = {
-  uid: null,
-  username: null,
-  avatar: null,
-  fetching: false
-};
+const initialState = {};
 
 export default (state = initialState, action) => {
   const {type, payload = {}} = action;
@@ -26,10 +21,7 @@ export default (state = initialState, action) => {
     };
 
   case actions.LOGOUT:
-    return {
-      ...state,
-      ...initialState
-    };
+    return {};
 
   default:
     return state;

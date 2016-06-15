@@ -1,5 +1,5 @@
 import {replace} from 'react-router-redux';
-import {after, last} from 'lodash';
+import {after, last, noop} from 'lodash';
 
 import {LOGOUT} from '../constants/me';
 import * as actions from '../constants/stories';
@@ -19,7 +19,8 @@ export const fetch = (id) => (dispatch, getState) => {
   const {me} = getState();
 
   if (!me.uid) {
-    return dispatch({type: LOGOUT});
+    dispatch({type: LOGOUT});
+    return noop;
   }
 
   dispatch({type: actions.FETCH_START, payload: {id}});
@@ -36,7 +37,6 @@ export const fetch = (id) => (dispatch, getState) => {
           error: 'That story does not exist'
         }
       });
-      return;
     }
 
     dispatch({
@@ -57,7 +57,8 @@ export const join = (id) => (dispatch, getState) => {
   const {me} = getState();
 
   if (!me.uid) {
-    return dispatch({type: LOGOUT});
+    dispatch({type: LOGOUT});
+    return noop;
   }
 
   dispatch({type: actions.JOINING, payload: {id}});

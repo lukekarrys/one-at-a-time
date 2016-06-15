@@ -4,7 +4,7 @@ import {browserHistory} from 'react-router';
 import {routerMiddleware} from 'react-router-redux';
 import reducer from '../reducers';
 
-export default function configureStore(initialState = {}) {
+export default (initialState = {}) => {
   const middleware = [thunk, routerMiddleware(browserHistory)];
   const storeEnhancers = [];
 
@@ -34,4 +34,4 @@ export default function configureStore(initialState = {}) {
   }
 
   return store;
-}
+};

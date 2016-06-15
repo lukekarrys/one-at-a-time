@@ -6,15 +6,19 @@ import * as actions from '../constants/me';
 
 const {localStorage} = window;
 
-export const logout = () => (dispatch) => {
+export const loginStart = () => ({
+  type: actions.LOGIN_START
+});
+
+export const logout = (error) => (dispatch) => {
   fbAuth.signOut();
   localStorage.removeItem('anonymous_username');
-  dispatch({type: actions.LOGOUT});
+  dispatch({type: actions.LOGOUT, error});
 };
 
 export const loginUser = (auth) => (dispatch, getState) => {
   if (!auth) {
-    return dispatch(logout());
+    return dispatch(logout(new Error('No authentication information')));
   }
 
   const {uid} = getState().me;
@@ -45,13 +49,14 @@ export const loginUser = (auth) => (dispatch, getState) => {
 };
 
 export const login = ({type = 'anonymous', redirect} = {}) => (dispatch) => {
-  dispatch({type: actions.LOGIN_START});
+  dispatch(loginStart());
 
   const auth = type === 'anonymous'
     ? fbAuth.signInAnonymously()
     : fbAuth.signInWithPopup(fbTwitter);
 
   auth.then((result) => {
+    dispatch(loginUser(result.user || result));
     // The main app.js file handles dispatching the loginUser action creator
     if (redirect) {
       dispatch(replace(redirect));
