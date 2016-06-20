@@ -58,7 +58,7 @@
     "eslint": "^2.12.0",
     "eslint-plugin-classes": "^0.1.1",
     "eslint-plugin-react": "^5.1.1",
-    "file-loader": "^0.8.5",
+    "file-loader": "^0.9.0",
     "firebase-tools": "^3.0.2",
     "git-validate": "^2.1.4",
     "hjs-webpack": "^8.2.0",
