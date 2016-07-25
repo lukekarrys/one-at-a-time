@@ -19,7 +19,7 @@
     "hedges": "^1.0.0",
     "lodash": "^4.13.1",
     "react": "^15.2.0",
-    "react-bootstrap": "^0.29.5",
+    "react-bootstrap": "^0.30.0",
     "react-clipboard.js": "^0.2.3",
     "react-dom": "^15.2.0",
     "react-redux": "^4.4.5",
