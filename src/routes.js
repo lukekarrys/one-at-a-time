@@ -14,7 +14,7 @@ import Login from 'p/Login';
 import FourOhFour from 'p/FourOhFour';
 
 const Auth = UserAuthWrapper({
-  authSelector: (state) => state.me.id,
+  authSelector: (state) => state.me,
   authenticatingSelector: (state) => state.me.fetching,
   redirectAction: routerActions.replace,
   wrapperDisplayName: 'Auth'
