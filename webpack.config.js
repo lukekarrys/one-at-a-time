@@ -1,9 +1,9 @@
 /* eslint-env node */
 
+const path = require('path');
 const makeWebpackConfig = require('hjs-webpack');
 const html = require('html-tagged-literals');
 const cssnano = require('cssnano');
-const path = require('path');
 const remove = require('lodash').remove;
 const webpack = require('webpack');
 

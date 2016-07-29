@@ -1,5 +1,5 @@
 // node -e 'require("common-english-words").getWords((err, words) => console.log(words))' > src/lib/commonWords.js
-module.exports = [
+export default [
   'the',
   'and',
   'to',

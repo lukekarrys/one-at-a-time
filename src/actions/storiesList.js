@@ -1,6 +1,6 @@
-import * as actions from '../constants/storiesList';
 import fb from 'l/firebase';
 import {LOGOUT} from '../constants/me';
+import * as actions from '../constants/storiesList';
 
 export const fetch = () => (dispatch, getState) => {
   dispatch({type: actions.FETCH_START});

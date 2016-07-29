@@ -1,5 +1,5 @@
 // node -e 'console.log(require("3000-words-list/lib/3000-words").map((word) => word.name))' > src/lib/3000words.js
-module.exports = [
+export default [
   'the',
   'of',
   'and',

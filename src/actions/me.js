@@ -1,6 +1,6 @@
-import {auth as fbAuth, twitter as fbTwitter} from 'l/firebase';
 import {replace} from 'react-router-redux';
 import sillyname from 'sillyname';
+import {auth as fbAuth, twitter as fbTwitter} from 'l/firebase';
 
 import * as actions from '../constants/me';
 

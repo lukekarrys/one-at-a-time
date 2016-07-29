@@ -12,6 +12,7 @@ export default (initialState = {}) => {
     middleware.push(require('redux-logger')({
       collapsed: true
     }));
+
     storeEnhancers.push(
       window.devToolsExtension ? window.devToolsExtension() : (f) => f
     );
@@ -28,8 +29,7 @@ export default (initialState = {}) => {
 
   if (module.hot) {
     module.hot.accept('../reducers', () => {
-      const nextReducer = require('../reducers');
-      store.replaceReducer(nextReducer);
+      store.replaceReducer(require('../reducers'));
     });
   }
 

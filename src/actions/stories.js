@@ -1,9 +1,9 @@
 import {replace} from 'react-router-redux';
 import {after, last} from 'lodash';
+import fb from 'l/firebase';
 
 import {LOGOUT} from '../constants/me';
 import * as actions from '../constants/stories';
-import fb from 'l/firebase';
 
 export const addItem = (item) => ({
   type: actions.ADD_ITEM,

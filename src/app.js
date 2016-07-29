@@ -9,10 +9,10 @@ import {Router, browserHistory} from 'react-router';
 import {syncHistoryWithStore} from 'react-router-redux';
 import {once} from 'lodash';
 
-import configureStore from './store/configureStore';
-import routes from './routes';
 import * as meActions from 'a/me';
 import {auth} from 'l/firebase';
+import configureStore from './store/configureStore';
+import routes from './routes';
 
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);

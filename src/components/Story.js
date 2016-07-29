@@ -4,8 +4,8 @@ import gifshot from 'gifshot';
 import {map, without, takeRight} from 'lodash';
 import {findDOMNode} from 'react-dom';
 
-import PositionChange from './PositionChange';
 import position from 'l/yPosition';
+import PositionChange from './PositionChange';
 import WordSelect from './WordSelect';
 import EmojiSelect from './EmojiSelect';
 import GifButton from './GifButton';

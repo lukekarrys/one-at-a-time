@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
-import StoryItemSelect from './StoryItemSelect';
 import words from 'l/words';
+import StoryItemSelect from './StoryItemSelect';
 
 export default class WordSelect extends Component {
   render() {
