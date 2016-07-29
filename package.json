@@ -33,7 +33,7 @@
     "redux-thunk": "^2.1.0",
     "reselect": "^2.5.1",
     "sillyname": "^0.1.0",
-    "spache": "^0.2.2",
+    "spache": "^1.0.0",
     "superb": "^1.3.0",
     "weasels": "^1.0.0",
     "yes-no-words": "^1.3.0"
