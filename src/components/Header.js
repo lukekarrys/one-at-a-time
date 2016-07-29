@@ -5,12 +5,10 @@ import {Navbar, Nav, MenuItem, NavDropdown} from 'react-bootstrap';
 
 import Logo from './Logo';
 
-const {
-  Header: NavbarHeader,
-  Brand: NavbarBrand,
-  Toggle: NavbarToggle,
-  Collapse: NavbarCollapse
-} = Navbar;
+const NavbarHeader = Navbar.Header;
+const NavbarBrand = Navbar.Brand;
+const NavbarToggle = Navbar.Toggle;
+const NavbarCollapse = Navbar.Collapse;
 
 export default class Header extends Component {
   handleLoginTwitter = (e) => {
