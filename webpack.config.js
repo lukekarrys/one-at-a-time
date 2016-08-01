@@ -47,6 +47,8 @@ const config = makeWebpackConfig({
   html: renderHTML
 });
 
+console.log(config.output)
+
 config.postcss.push(cssnano({
   normalizeUrl: false,
   core: minify,
