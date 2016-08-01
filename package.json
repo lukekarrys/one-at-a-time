@@ -92,7 +92,7 @@
     "codeship-deploy": "npm run deploy",
     "codeship-setup": "npm install && npm install && npm run build",
     "codeship-test": "npm run lint && npm run validate",
-    "deploy": "firebase deploy --project project-3484040432795963818",
+    "deploy": "firebase deploy",
     "lint": "eslint --ignore-path .gitignore .",
     "npm-version": "npm install -g npm@`cat package.json | jq -r '.engines.npm'`",
     "start": "hjs-dev-server",

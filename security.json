@@ -3,7 +3,10 @@
     "stories": {
       ".read": true,
       ".write": "auth != null",
-      ".indexOn": ["type", "uid"]
+      ".indexOn": [
+        "type",
+        "uid"
+      ]
     },
     "storyData": {
       ".read": "auth != null",
