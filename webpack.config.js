@@ -40,14 +40,12 @@ const renderHTML = (context) => html[isDev ? 'unindent' : 'minify']`
 const config = makeWebpackConfig({
   isDev,
   'in': 'src/app.js',
-  out: 'public',
+  out: 'build',
   clearBeforeBuild: true,
   output: {hash: minify},
   hostname: 'localhost',
   html: renderHTML
 });
-
-console.log(config.output)
 
 config.postcss.push(cssnano({
   normalizeUrl: false,
