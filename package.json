@@ -89,7 +89,7 @@
   "scripts": {
     "build": "NODE_ENV=production webpack --bail",
     "build:debug": "NODE_ENV=debug webpack",
-    "debug:path": "pwd && ls -lha . && ls -lha build",
+    "debug:path": "pwd && ls -lha . && if [ -d build ]; then ls -lha build; fi;",
     "codeship-deploy": "npm run debug:path && npm run deploy",
     "codeship-setup": "npm run debug:path && npm install && npm install && npm run build && npm run debug:path",
     "codeship-test": "npm run debug:path && npm run lint && npm run validate && npm run debug:path",
