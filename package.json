@@ -89,8 +89,9 @@
   "scripts": {
     "build": "NODE_ENV=production webpack --bail",
     "build:debug": "NODE_ENV=debug webpack",
-    "codeship-deploy": "npm run deploy",
-    "codeship-setup": "npm install && npm install && npm run build",
+    "debug:path": "pwd && ls -lha . && ls -lha build",
+    "codeship-deploy": "npm run depug:path && npm run deploy",
+    "codeship-setup": "npm install && npm install && npm run build && npm run depug:path",
     "codeship-test": "npm run lint && npm run validate",
     "deploy": "firebase deploy",
     "lint": "eslint --ignore-path .gitignore .",
