@@ -28,7 +28,7 @@
     "react-router-redux": "^4.0.5",
     "react-select": "^1.0.0-beta14",
     "redux": "^3.5.2",
-    "redux-auth-wrapper": "^0.6.0",
+    "redux-auth-wrapper": "^0.7.0",
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.1.0",
     "reselect": "^2.5.3",
