@@ -10,9 +10,9 @@ const webpack = require('webpack');
 const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 const DefinePlugin = webpack.DefinePlugin;
 
-const isDev = (process.argv[1] || '').indexOf('hjs-dev-server') !== -1;
-const debug = process.env.NODE_ENV === 'debug';
-const minify = isDev ? false : !debug;
+const env = process.env.NODE_ENV || 'development';
+const isDev = env === 'development';
+const minify = isDev ? false : env !== 'debug';
 
 const renderHTML = (context) => html[isDev ? 'unindent' : 'minify']`
   <!DOCTYPE html>
