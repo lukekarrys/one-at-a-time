@@ -1,3 +1,5 @@
+/* globals ga */
+
 import './styles/theme.less';
 import '!!file?name=favicon.png!./favicon.png';
 import '!!file?name=favicon.ico!./favicon.ico';
@@ -16,6 +18,11 @@ import routes from './routes';
 
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
+
+// Google analytics for each history change
+// Use getCurrentLocation since first call has no location https://github.com/reactjs/react-router-redux/issues/475
+const pageview = ({pathname, search}) => ga('send', 'pageview', pathname + search);
+history.listen((location) => pageview(location || history.getCurrentLocation()));
 
 store.dispatch(meActions.loginStart());
 auth.onAuthStateChanged(once((user) => store.dispatch(meActions.loginUser(user))));
