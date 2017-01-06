@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 import {LinkContainer} from 'react-router-bootstrap';
-import {Navbar, Nav, MenuItem, NavDropdown} from 'react-bootstrap';
+import {Navbar, Nav, NavItem, NavDropdown} from 'react-bootstrap';
 
 import Logo from './Logo';
 
@@ -39,18 +39,18 @@ export default class Header extends Component {
       return (
         <NavDropdown title={user} id='me-nav'>
           <LinkContainer to='/stories/mine'>
-            <MenuItem>Stories</MenuItem>
+            <NavItem>Stories</NavItem>
           </LinkContainer>
-          <MenuItem divider />
-          <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
+          <NavItem divider />
+          <NavItem onClick={this.handleLogout}>Logout</NavItem>
         </NavDropdown>
       );
     }
 
     return (
       <NavDropdown title='Login' id='login-nav'>
-        <MenuItem onClick={this.handleLoginTwitter}>Login with Twitter</MenuItem>
-        <MenuItem onClick={this.handleLogoutAnonymous}>Login Anonymously</MenuItem>
+        <NavItem onClick={this.handleLoginTwitter}>Login with Twitter</NavItem>
+        <NavItem onClick={this.handleLogoutAnonymous}>Login Anonymously</NavItem>
       </NavDropdown>
     );
   }
@@ -69,14 +69,14 @@ export default class Header extends Component {
         <NavbarCollapse>
           <Nav pullRight>
             <LinkContainer onlyActiveOnIndex to='/stories'>
-              <MenuItem>Stories</MenuItem>
+              <NavItem>Stories</NavItem>
             </LinkContainer>
             <NavDropdown title='Start' id='start-nav'>
               <LinkContainer to='/start/private'>
-                <MenuItem>Private</MenuItem>
+                <NavItem>Private</NavItem>
               </LinkContainer>
               <LinkContainer to='/start/public'>
-                <MenuItem>Public</MenuItem>
+                <NavItem>Public</NavItem>
               </LinkContainer>
             </NavDropdown>
             {this.renderLoginDropdown()}
