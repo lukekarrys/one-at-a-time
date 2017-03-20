@@ -61,7 +61,7 @@ export const login = ({type = 'anonymous', redirect} = {}) => (dispatch) => {
     if (redirect) {
       return dispatch(replace(redirect));
     }
-    return null
+    return null;
   }).catch((err) => {
     dispatch(logout(err));
   });
