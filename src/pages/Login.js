@@ -47,7 +47,7 @@ export default class LoginPage extends Component {
       <Page>
         <PageHeader>Login Required</PageHeader>
         <p>To do that thing you were trying to do, you must be logged in, either anonymously or with Twitter.</p>
-        <p className='text-info'>The only difference is <strong>if you login anonyously, you won't have access to your list of private stories later.</strong></p>
+        <p className='text-info'>The only difference is <strong>if you login anonyously, you won’t have access to your list of private stories later.</strong></p>
         <br />
         {authing &&
           <Alert bsStyle='info'>

@@ -4,11 +4,11 @@ const path = require('path');
 const makeWebpackConfig = require('hjs-webpack');
 const html = require('html-tagged-literals');
 const cssnano = require('cssnano');
-const remove = require('lodash').remove;
+const {remove} = require('lodash');
 const webpack = require('webpack');
 
-const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
-const DefinePlugin = webpack.DefinePlugin;
+const {UglifyJsPlugin} = webpack.optimize;
+const {DefinePlugin} = webpack;
 
 const env = process.env.NODE_ENV || 'development';
 const isDev = env === 'development';

@@ -59,7 +59,7 @@ export default class Story extends Component {
         <div className='story--items'>
           {!hasData &&
             <Alert bsStyle='success'>
-              This story doesn't have anything in it yet. Invite some people or add the first emoji/gif/word!
+              This story doesn’t have anything in it yet. Invite some people or add the first emoji/gif/word!
             </Alert>
           }
           {story.data.map((item) => <StoryItem key={item.id} {...item} />)}

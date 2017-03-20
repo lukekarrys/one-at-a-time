@@ -87,7 +87,7 @@ export default class StartPage extends Component {
           <HelpBlock>
             <Glyphicon glyph='question-sign' />
             {' '}
-            When this option is on, <strong>the same person won't be able to post too many times in a row</strong>.
+            When this option is on, <strong>the same person won’t be able to post too many times in a row</strong>.
             <br />
             <Glyphicon glyph='user' />
             {' '}

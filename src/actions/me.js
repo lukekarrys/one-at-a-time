@@ -59,8 +59,9 @@ export const login = ({type = 'anonymous', redirect} = {}) => (dispatch) => {
     dispatch(loginUser(result.user || result));
     // The main app.js file handles dispatching the loginUser action creator
     if (redirect) {
-      dispatch(replace(redirect));
+      return dispatch(replace(redirect));
     }
+    return null
   }).catch((err) => {
     dispatch(logout(err));
   });
