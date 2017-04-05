@@ -65,7 +65,7 @@
     "file-loader": "^0.11.1",
     "firebase-tools": "^3.2.1",
     "git-validate": "^2.2.2",
-    "hjs-webpack": "^8.4.3",
+    "hjs-webpack": "^9.0.0",
     "html-tagged-literals": "^1.0.2",
     "json-loader": "^0.5.4",
     "less": "^2.7.2",
