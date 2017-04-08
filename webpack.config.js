@@ -3,7 +3,6 @@
 const path = require('path');
 const makeWebpackConfig = require('hjs-webpack');
 const html = require('html-tagged-literals');
-const cssnano = require('cssnano');
 const {remove} = require('lodash');
 const webpack = require('webpack');
 
@@ -54,11 +53,27 @@ const config = makeWebpackConfig({
   html: renderHTML
 });
 
-config.postcss.push(cssnano({
-  normalizeUrl: false,
-  core: minify,
-  discardComments: {removeAll: minify}
-}));
+const merge = (...sources) => Object.assign({}, ...sources);
+
+const replaceLoader = (match, options) => {
+  config.module.rules.forEach((loader) => {
+    if (loader && loader.use) {
+      const matchedIndex = loader.use.findIndex((usedLoader) => (usedLoader.loader || usedLoader) === match);
+      const matchedLoader = loader.use[matchedIndex];
+      if (matchedLoader) {
+        loader.use[matchedIndex] = typeof matchedLoader === 'string'
+          ? {loader: matchedLoader, options}
+          : merge(matchedLoader, {
+            options: merge(matchedLoader.options || {}, options)
+          });
+      }
+    }
+  });
+};
+
+replaceLoader('css-loader', {
+  minimize: minify ? {discardComments: {removeAll: true}} : false
+});
 
 config.resolve.alias = {
   l: path.resolve(__dirname, 'src', 'lib'),
