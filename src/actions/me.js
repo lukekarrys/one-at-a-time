@@ -1,6 +1,6 @@
-import {replace} from 'react-router-redux';
 import sillyname from 'sillyname';
 import {auth as fbAuth, twitter as fbTwitter} from 'l/firebase';
+import history from 'l/history';
 
 import * as actions from '../constants/me';
 
@@ -59,7 +59,7 @@ export const login = ({type = 'anonymous', redirect} = {}) => (dispatch) => {
     dispatch(loginUser(result.user || result));
     // The main app.js file handles dispatching the loginUser action creator
     if (redirect) {
-      return dispatch(replace(redirect));
+      return history.replace(redirect);
     }
     return null;
   }).catch((err) => {

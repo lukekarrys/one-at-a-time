@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {PageHeader} from 'react-bootstrap';
-import {Link} from 'react-router';
+import {Link} from 'react-router-dom';
 
 import Page from 'co/Page';
 
