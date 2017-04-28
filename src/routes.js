@@ -1,6 +1,7 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import {UserAuthWrapper} from 'redux-auth-wrapper';
+import qs from 'query-string';
 
 import history from 'l/history';
 
@@ -17,7 +18,10 @@ import FourOhFour from 'p/FourOhFour';
 const Auth = UserAuthWrapper({
   authSelector: (state) => state.me,
   authenticatingSelector: (state) => state.me.fetching,
-  redirectAction: history.replace,
+  redirectAction: (location) => () => history.replace({
+    pathname: location.pathname,
+    search: qs.stringify(location.query)
+  }),
   wrapperDisplayName: 'Auth'
 });
 
