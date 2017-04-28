@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router';
+import {Link} from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
-import {Navbar, Nav, NavItem, NavDropdown} from 'react-bootstrap';
+import {Navbar, Nav, NavItem, MenuItem, NavDropdown} from 'react-bootstrap';
 
 import Logo from './Logo';
 
@@ -41,7 +41,7 @@ export default class Header extends Component {
           <LinkContainer to='/stories/mine'>
             <NavItem>Stories</NavItem>
           </LinkContainer>
-          <NavItem divider />
+          <MenuItem divider />
           <NavItem onClick={this.handleLogout}>Logout</NavItem>
         </NavDropdown>
       );
@@ -68,7 +68,7 @@ export default class Header extends Component {
         </NavbarHeader>
         <NavbarCollapse>
           <Nav pullRight>
-            <LinkContainer onlyActiveOnIndex to='/stories'>
+            <LinkContainer exact to='/stories'>
               <NavItem>Stories</NavItem>
             </LinkContainer>
             <NavDropdown title='Start' id='start-nav'>

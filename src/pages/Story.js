@@ -11,7 +11,7 @@ import Story from 'c/Story';
 import CopyUrl from 'c/CopyUrl';
 
 const mapStateToProps = (state, props) => {
-  const {id} = props.params;
+  const {id} = props.match.params;
   const story = state.stories[id];
 
   return {

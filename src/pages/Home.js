@@ -8,10 +8,7 @@ import Logo from 'c/Logo';
 import Page from 'co/Page';
 import * as storyActions from 'a/stories';
 
-const mapStateToProps = (state, props) => ({
-  state,
-  props
-});
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = (dispatch) => ({
   storyActions: bindActionCreators(storyActions, dispatch)

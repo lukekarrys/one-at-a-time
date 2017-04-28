@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {ListGroup, ListGroupItem, Glyphicon} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
-import {Link} from 'react-router';
+import {Link} from 'react-router-dom';
 
 export default class Stories extends Component {
   render() {

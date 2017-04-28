@@ -1,6 +1,6 @@
-import {replace} from 'react-router-redux';
 import {after, last} from 'lodash';
 import fb from 'l/firebase';
+import history from 'l/history';
 
 import {LOGOUT} from '../constants/me';
 import * as actions from '../constants/stories';
@@ -12,7 +12,7 @@ export const addItem = (item) => ({
 
 export const start = ({name, uid, type = 'private', forceSharing = true}) => (dispatch) => {
   const ref = fb.child('stories').push({type, name, uid, forceSharing});
-  dispatch(replace(`/stories/${ref.key}`));
+  history.replace(`/stories/${ref.key}`);
 };
 
 export const fetch = (id) => (dispatch, getState) => {

@@ -8,13 +8,10 @@ import Loading from 'co/Loading';
 import * as storiesListActions from 'a/storiesList';
 import Stories from 'c/Stories';
 
-const mapStateToProps = (state, props) => {
-  const stories = state.storiesList;
-  return {
-    stories: stories.records,
-    syncing: stories.fetching
-  };
-};
+const mapStateToProps = ({storiesList}) => ({
+  stories: storiesList.records,
+  syncing: storiesList.fetching
+});
 
 const mapDispatchToProps = (dispatch) => ({
   storiesListActions: bindActionCreators(storiesListActions, dispatch)

@@ -2,20 +2,20 @@ import React, {Component} from 'react';
 import {PageHeader, Button, ButtonToolbar, Alert} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {routerActions} from 'react-router-redux';
+import qs from 'query-string';
 
+import history from 'l/history';
 import Page from 'co/Page';
 import * as meActionCreators from 'a/me';
 
 const mapStateToProps = (state, props) => ({
-  redirect: props.location.query.redirect || '/',
+  redirect: qs.parse(props.location.search).redirect || '/',
   uid: state.me.uid,
   authing: state.me.fetching
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  meActions: bindActionCreators(meActionCreators, dispatch),
-  routerActions: bindActionCreators(routerActions, dispatch)
+  meActions: bindActionCreators(meActionCreators, dispatch)
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -29,10 +29,10 @@ export default class LoginPage extends Component {
   }
 
   redirectOnAuth(props) {
-    const {uid, redirect, routerActions: {replace}} = props;
+    const {uid, redirect} = props;
 
     if (uid) {
-      replace(redirect);
+      history.replace(redirect);
     }
   }
 

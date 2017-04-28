@@ -2,17 +2,21 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Checkbox, HelpBlock, InputGroup, FormGroup, FormControl, Button, PageHeader, Glyphicon} from 'react-bootstrap';
-import {upperFirst} from 'lodash';
+import {upperFirst, last} from 'lodash';
 
 import Page from 'co/Page';
 import * as storyActions from 'a/stories';
 
 const InputGroupButton = InputGroup.Button;
 
-const mapStateToProps = (state, props) => ({
-  type: ['public', 'private'].indexOf(props.route.path) === -1 ? 'private' : props.route.path,
-  uid: state.me.uid
-});
+const mapStateToProps = (state, props) => {
+  const type = last(props.match.path.split('/'));
+  return {
+    type: type === 'public' || type === 'private' ? type : 'private',
+    uid: state.me.uid,
+    match: props.match
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
   storyActions: bindActionCreators(storyActions, dispatch)

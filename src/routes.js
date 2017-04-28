@@ -1,7 +1,8 @@
 import React from 'react';
-import {Route, IndexRoute} from 'react-router';
+import {Route, Switch} from 'react-router-dom';
 import {UserAuthWrapper} from 'redux-auth-wrapper';
-import {routerActions} from 'react-router-redux';
+
+import history from 'l/history';
 
 import App from 'co/App';
 
@@ -16,27 +17,29 @@ import FourOhFour from 'p/FourOhFour';
 const Auth = UserAuthWrapper({
   authSelector: (state) => state.me,
   authenticatingSelector: (state) => state.me.fetching,
-  redirectAction: routerActions.replace,
+  redirectAction: history.replace,
   wrapperDisplayName: 'Auth'
 });
 
-export default (
-  <Route path='/' component={App}>
-    <IndexRoute component={Home} />
-    <Route path='login' component={Login} />
+export default class Routes extends React.Component {
+  render() {
+    return (
+      <App>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/login' component={Login} />
 
-    <Route path='start'>
-      <IndexRoute component={Auth(Start)} />
-      <Route path='public' component={Auth(Start)} />
-      <Route path='private' component={Auth(Start)} />
-    </Route>
+          <Route exact path='/start' component={Auth(Start)} />
+          <Route exact path='/start/public' component={Auth(Start)} />
+          <Route exact path='/start/private' component={Auth(Start)} />
 
-    <Route path='stories'>
-      <IndexRoute component={Stories} />
-      <Route path='mine' component={Auth(UserStories)} />
-      <Route path=':id' component={Auth(Story)} />
-    </Route>
+          <Route exact path='/stories' component={Stories} />
+          <Route exact path='/stories/mine' component={Auth(UserStories)} />
+          <Route exact path='/stories/:id' component={Auth(Story)} />
 
-    <Route path='*' component={FourOhFour} />
-  </Route>
-);
+          <Route component={FourOhFour} />
+        </Switch>
+      </App>
+    );
+  }
+}
