@@ -20,7 +20,7 @@ export default class Story extends Component {
   }
 
   handlePositionChange = () => {
-    this.setState({inputPostion: position(findDOMNode(this.refs.inputs))});
+    this.setState({inputPostion: position(findDOMNode(this._inputs))});
   };
 
   handleText = (value) => this.handleData('text', value);
@@ -83,7 +83,7 @@ export default class Story extends Component {
             Whoa! Slow down a little bit and let some other people add to the story.
           </Alert>
         }
-        <Row ref='inputs' className={`story--inputs story--inputs--${inputPostion}`}>
+        <Row ref={(c) => (this._inputs = c)} className={`story--inputs story--inputs--${inputPostion}`}>
           <Col sm={hasWebCam ? 10 : 12} md={hasWebCam ? 10 : 12} lg={hasWebCam ? 11 : 12}>
             <Row>
               <Col sm={6}>

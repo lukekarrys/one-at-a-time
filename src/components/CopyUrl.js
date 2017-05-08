@@ -29,9 +29,11 @@ export default class CopyUrl extends Component {
           data-clipboard-text={window.location.href}
           onSuccess={this.handleCopySuccess}
         >
-          Invite
-          {' '}
-          <Glyphicon glyph='copy' />
+          <span>
+            Invite
+            {' '}
+            <Glyphicon glyph='copy' />
+          </span>
         </ClipboardButton>
         <small className={copyClasses}>
           Copied Link!
