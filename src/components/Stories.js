@@ -17,7 +17,7 @@ export default class Stories extends Component {
             }
           </ListGroupItem>
         }
-        {stories.map((story) =>
+        {stories.map((story) => (
           <LinkContainer key={story.id} to={`/stories/${story.id}`}>
             <ListGroupItem>
               {story.name}
@@ -26,7 +26,7 @@ export default class Stories extends Component {
               }
             </ListGroupItem>
           </LinkContainer>
-        )}
+        ))}
       </ListGroup>
     );
   }
