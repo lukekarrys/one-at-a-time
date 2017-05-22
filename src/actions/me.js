@@ -16,8 +16,8 @@ export const logout = (error) => (dispatch) => {
   dispatch({type: actions.LOGOUT, error});
 };
 
-export const loginUser = (auth) => (dispatch, getState) => {
-  if (!auth) {
+export const authUser = (user) => (dispatch, getState) => {
+  if (!user) {
     return dispatch(logout(new Error('No authentication information')));
   }
 
@@ -28,18 +28,18 @@ export const loginUser = (auth) => (dispatch, getState) => {
   }
 
   const data = {
-    uid: auth.uid
+    uid: user.uid
   };
 
-  if (auth.isAnonymous) {
+  if (user.isAnonymous) {
     const localUsername = localStorage.getItem('anonymous_username');
     data.username = localUsername || sillyname();
     data.avatar = `https://api.adorable.io/avatars/18/${data.uid.replace(/ /g, '')}`;
     localStorage.setItem('anonymous_username', data.username);
   }
   else {
-    data.username = auth.providerData[0].displayName;
-    data.avatar = auth.providerData[0].photoURL;
+    data.username = user.providerData[0].displayName;
+    data.avatar = user.providerData[0].photoURL;
   }
 
   return dispatch({
@@ -56,11 +56,8 @@ export const login = ({type = 'anonymous', redirect} = {}) => (dispatch) => {
     : fbAuth.signInWithPopup(fbTwitter);
 
   auth.then((result) => {
-    dispatch(loginUser(result.user || result));
-    // The main app.js file handles dispatching the loginUser action creator
-    if (redirect) {
-      return history.replace(redirect);
-    }
+    dispatch(authUser(result.user || result));
+    if (redirect) return history.replace(redirect);
     return null;
   }).catch((err) => {
     dispatch(logout(err));
