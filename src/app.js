@@ -28,7 +28,7 @@ pageview(history.location);
 window.__history = history;
 
 store.dispatch(meActions.loginStart());
-auth.onAuthStateChanged(once((user) => store.dispatch(meActions.loginUser(user))));
+auth.onAuthStateChanged(once((user) => store.dispatch(meActions.authUser(user))));
 
 ReactDOM.render((
   <Provider store={store}>
