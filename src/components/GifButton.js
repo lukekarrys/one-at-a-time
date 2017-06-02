@@ -19,7 +19,7 @@ export default class GifButton extends Component {
         this.props.onError(obj.errorMsg);
       }
     });
-  }
+  };
 
   render() {
     const props = omit(this.props, 'onGif', 'onError');
