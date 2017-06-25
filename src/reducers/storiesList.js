@@ -9,7 +9,6 @@ export default (state = initialState, action) => {
   const {type, payload = {}} = action;
 
   switch (type) {
-
   case actions.FETCH_START:
     return {
       ...state,
@@ -25,6 +24,5 @@ export default (state = initialState, action) => {
 
   default:
     return state;
-
   }
 };
