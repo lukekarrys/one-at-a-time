@@ -1,0 +1,12 @@
+{
+  "extends": ["@lukekarrys/eslint-config"],
+
+  "settings": {
+    "import/external-module-folders": ["node_modules", "l", "c", "co", "a", "p"],
+  },
+
+  "rules": {
+    "react/prop-types": 0,
+    "no-magic-numbers": 0
+  }
+}

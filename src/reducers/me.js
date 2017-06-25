@@ -6,7 +6,6 @@ export default (state = initialState, action) => {
   const {type, payload = {}} = action;
 
   switch (type) {
-
   case actions.LOGIN_START:
     return {
       ...state,
