@@ -4,7 +4,8 @@ const path = require('path');
 const makeWebpackConfig = require('hjs-webpack');
 const html = require('html-tagged-literals');
 const {remove} = require('lodash');
-const webpack = require('webpack');
+// Lets just use the webpack from hjs-webpack. Shhhh dont tell anyone
+const webpack = require('webpack'); // eslint-disable-line import/no-extraneous-dependencies
 
 const {UglifyJsPlugin} = webpack.optimize;
 const {DefinePlugin} = webpack;
