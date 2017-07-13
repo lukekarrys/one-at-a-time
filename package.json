@@ -29,7 +29,7 @@
     "react-router-dom": "^4.1.1",
     "react-select": "^1.0.0-rc.5",
     "redux": "^3.7.1",
-    "redux-auth-wrapper": "^1.1.0",
+    "redux-auth-wrapper": "^2.0.1",
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1",
     "sillyname": "^0.1.0",
