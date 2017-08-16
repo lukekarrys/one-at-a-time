@@ -20,6 +20,7 @@ export default class Story extends Component {
   }
 
   handlePositionChange = () => {
+    // eslint-disable-next-line react/no-find-dom-node
     this.setState({inputPostion: position(findDOMNode(this._inputs))});
   };
 

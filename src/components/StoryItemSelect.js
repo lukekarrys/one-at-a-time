@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {findDOMNode} from 'react-dom';
 import {Async as Select} from 'react-select';
 import {sampleSize, defer, omit} from 'lodash';
+import {findDOMNode} from 'react-dom';
 
 const MAX_SIZE = 20;
 
@@ -37,6 +37,7 @@ export default class StoryItemSelect extends Component {
 
   // Set timeout ensures the menu is in the dom
   handleOpen = () => defer(() => {
+    // eslint-disable-next-line react/no-find-dom-node
     const dom = findDOMNode(this._select);
     // Hack to reset scroll position
     dom.querySelector('.Select-menu').scrollTop = 0;
