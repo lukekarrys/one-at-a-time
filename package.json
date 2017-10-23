@@ -20,7 +20,7 @@
     "history": "^4.6.3",
     "lodash": "^4.17.4",
     "query-string": "^5.0.0",
-    "react": "^15.6.1",
+    "react": "^16.0.0",
     "react-bootstrap": "^0.31.2",
     "react-clipboard.js": "^1.1.2",
     "react-dom": "^15.6.1",
