@@ -84,20 +84,14 @@
   "main": "index.js",
   "pre-commit": [
     "lint",
-    "validate",
     "test"
   ],
   "private": true,
   "scripts": {
     "build": "NODE_ENV=production webpack --bail",
     "build:debug": "NODE_ENV=debug webpack",
-    "codeship-deploy": "npm run deploy",
-    "codeship-setup": "npm install && npm run build",
-    "codeship-test": "npm run lint && npm run validate",
-    "deploy": "firebase deploy --project project-3484040432795963818",
     "lint": "eslint --ignore-path .gitignore .",
     "start": "hjs-dev-server",
-    "test": "npm run build",
-    "validate": "npm ls >/dev/null"
+    "test": "npm run build"
   }
 }

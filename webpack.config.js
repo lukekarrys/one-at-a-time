@@ -44,7 +44,10 @@ const config = makeWebpackConfig({
   clearBeforeBuild: true,
   output: {hash: minify},
   hostname: 'localhost',
-  html: renderHTML
+  html: (context) => ({
+    _redirects: ['/*', '/index.html', '200'].join('   '),
+    'index.html': renderHTML(context)
+  })
 });
 
 const merge = (...sources) => Object.assign({}, ...sources);
