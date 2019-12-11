@@ -1,13 +1,4 @@
 {
-  "hosting": {
-    "public": "build",
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
-  },
   "database": {
     "rules": "security.json"
   }
